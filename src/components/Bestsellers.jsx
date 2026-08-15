@@ -26,15 +26,15 @@ const Bestsellers = () => {
 
         {/* Section Header Centered */}
         <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl font-serif text-[#4a2e18] tracking-wide inline-block">
+          <h2 className="text-3xl sm:text-3xl text-[#4a2e18] tracking-wide inline-block">
             Bestsellers of the Month
           </h2>
-          <div className="w-16 h-[2px] bg-[#8b3a2b] mx-auto mt-3"></div>
+          <div className="w-16 h-[2px] bg-[#8c0a15] mx-auto mt-3"></div>
         </div>
 
         {/* Success Popup Message */}
         {cartMessage && (
-          <div className="fixed bottom-5 right-5 z-50 bg-[#3d2314] text-white px-5 py-3 rounded shadow-lg text-xs tracking-wider transition-all animate-bounce">
+          <div className="fixed bottom-5 right-5 z-50 bg-[#8c0a15] text-white px-5 py-3 rounded shadow-lg text-xs tracking-wider transition-all animate-bounce">
             {cartMessage}
           </div>
         )}
@@ -52,7 +52,7 @@ const Bestsellers = () => {
           </div>
         ) : (
           /* Actual Circular Category / Product Cards Grid */
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {bestsellersData.map((item) => (
               <div 
                 key={item.id} 

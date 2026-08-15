@@ -23,11 +23,11 @@ const ShopByCategory = () => {
             >
               <div>
                 {/* Image & Top Tag Container */}
-                <div className="relative w-full h-72 sm:h-80 bg-stone-50 overflow-hidden flex items-center justify-center p-4">
+                <div className="relative w-full h-52 sm:h-60 bg-stone-50 overflow-hidden flex items-center justify-center p-4">
                   
                   {/* Top Badge Tag */}
                   {item.tag && (
-                    <span className="absolute top-3 left-3 z-10 bg-[#4a2e18] text-white text-[10px] font-semibold tracking-wider px-2.5 py-1 uppercase shadow-md">
+                    <span className="absolute top-3 left-3 z-10 bg-[#8c0a15] text-white text-[10px] font-semibold tracking-wider px-2.5 py-1 uppercase shadow-md">
                       {item.tag}
                     </span>
                   )}
@@ -49,7 +49,7 @@ const ShopByCategory = () => {
                 </div>
 
                 {/* Details Container with Clean & Sharp Font Styling */}
-                <div className="p-5 text-center bg-white">
+                <div className="p-5 text-center bg-[#fff3df]">
                   <p className="text-[11px] text-stone-500 tracking-wider uppercase mb-1.5 font-medium">
                     {item.vendor}
                   </p>
@@ -73,13 +73,13 @@ const ShopByCategory = () => {
               </div>
 
               {/* Action Button */}
-              <div className="p-5 pt-0 bg-white">
+              <div className="p-5 pt-0 bg-[#fff3df] ">
                 <button 
                   disabled={item.isSoldOut}
                   className={`w-full py-3 text-xs font-bold tracking-widest uppercase transition-all duration-300 rounded-none shadow-sm ${
                     item.isSoldOut 
-                      ? "bg-[#8b3a2b]/50 text-white cursor-not-allowed" 
-                      : "bg-[#4a2e18] hover:bg-[#321e10] text-white active:scale-[0.98]"
+                      ? "bg-[#8c0a15] text-white cursor-not-allowed" 
+                      : "bg-[#8c0a15] hover:bg-[#321e10] text-white active:scale-[0.98]"
                   }`}
                 >
                   {item.isSoldOut ? "Sold Out" : "Add to Cart"}

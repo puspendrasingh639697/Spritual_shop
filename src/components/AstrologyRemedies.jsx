@@ -51,15 +51,15 @@ const AstrologyRemedies = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch relative">
           
           {/* Left Side Large Banner */}
-          <div className="lg:col-span-1 bg-[#8b3a2b] text-white flex flex-col justify-between overflow-hidden shadow-md rounded-sm">
-            <div className="relative w-full h-80 sm:h-96 lg:h-[420px] bg-stone-900/10">
+          <div className="lg:col-span-1 bg-[#8c0a15] text-white flex flex-col justify-between overflow-hidden shadow-md rounded-sm">
+            <div className="relative w-full h-80 sm:h-96 lg:h-[420px]">
               <img 
                 src={largeBannerItem.image} 
                 alt={largeBannerItem.title} 
                 className="w-full h-full object-cover object-center"
               />
             </div>
-            <div className="p-6 bg-[#8b3a2b] flex flex-col justify-end">
+            <div className="p-6 bg-[#8c0a15] flex flex-col justify-end">
               <h3 className="text-lg font-serif font-normal tracking-wide uppercase">
                 {largeBannerItem.title}
               </h3>
@@ -90,7 +90,7 @@ const AstrologyRemedies = () => {
                   <div>
                     <div className="relative w-full h-64 bg-stone-50 overflow-hidden flex items-center justify-center p-4">
                       {item.tag && (
-                        <span className="absolute top-3 left-3 z-10 bg-[#8b3a2b] text-white text-[10px] font-bold tracking-wider px-2 py-1 uppercase shadow-sm">
+                        <span className="absolute top-3 left-3 z-10 bg-[#8c0a15] text-white text-[10px] font-bold tracking-wider px-2 py-1 uppercase shadow-sm">
                           {item.tag}
                         </span>
                       )}
@@ -101,7 +101,7 @@ const AstrologyRemedies = () => {
                       />
                     </div>
 
-                    <div className="p-4 bg-white">
+                    <div className="p-4 bg-[#fff3df]">
                       <h4 className="text-xs sm:text-sm font-medium text-stone-800 line-clamp-2 min-h-[40px] leading-snug">
                         {item.title}
                       </h4>
