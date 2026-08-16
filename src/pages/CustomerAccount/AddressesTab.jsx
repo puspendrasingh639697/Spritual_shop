@@ -23,7 +23,7 @@ export default function AddressesTab({ addresses, setAddresses }) {
         </div>
         <button 
           onClick={() => setShowAddBox(!showAddBox)}
-          className="bg-[#8b3a2b] hover:bg-[#722d21] text-white text-xs font-bold uppercase px-4 py-2 rounded-sm cursor-pointer flex items-center gap-1.5 transition"
+          className="bg-[#8c0a15] hover:bg-[#722d21] text-white text-xs font-bold uppercase px-4 py-2 rounded-sm cursor-pointer flex items-center gap-1.5 transition"
         >
           <BiPlusCircle /> Add Address
         </button>

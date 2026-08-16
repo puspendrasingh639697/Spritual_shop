@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BiSupport, BiPhoneCall, BiEnvelope, BiMessageSquareDetail, BiCheckCircle } from "bi-react-icons"; // Ya fir react-icons/bi
+import { BiSupport, BiPhoneCall, BiEnvelope, BiMessageSquareDetail, BiCheckCircle } from "react-icons/bi";; // Ya fir react-icons/bi
 
 export default function SupportTab() {
   const [submitted, setSubmitted] = useState(false);

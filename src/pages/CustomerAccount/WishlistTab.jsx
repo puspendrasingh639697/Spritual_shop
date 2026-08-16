@@ -33,7 +33,7 @@ export default function WishlistTab({ wishlist, setWishlist, onNavigateCart }) {
                     if (onNavigateCart) onNavigateCart();
                     else alert("Item added to cart!");
                   }}
-                  className="bg-[#4a2e18] hover:bg-[#321e10] text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded-sm cursor-pointer"
+                  className="bg-[#8c0a15] hover:bg-[#321e10] text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded-sm cursor-pointer"
                 >
                   Add to Cart
                 </button>

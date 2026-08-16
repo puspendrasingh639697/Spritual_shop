@@ -20,9 +20,8 @@ const ProductTabs = ({ product, reviewsList, onAddReview }) => {
       {/* Spiritual Significance & Purpose */}
       {product.spiritualUse && (
         <div className="border border-[#e8dcc4] bg-[#fffbf2] p-6 rounded-sm shadow-sm relative overflow-hidden">
-          <div className="absolute -right-6 -bottom-6 text-[#f3e6cd]/40 text-9xl pointer-events-none">✨</div>
           <h3 className="text-base font-serif text-[#4a2e18] mb-3 flex items-center gap-2">
-            <span className="text-xl text-[#b8860b]">✨</span> Spiritual Significance & Purpose
+            <span className="text-xl text-[#b8860b]"></span> Spiritual Significance & Purpose
           </h3>
           <p className="text-xs sm:text-sm text-stone-700 leading-relaxed font-serif">
             {product.spiritualUse}
