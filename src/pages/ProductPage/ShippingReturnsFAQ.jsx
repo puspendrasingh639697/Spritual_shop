@@ -27,21 +27,21 @@ const ShippingReturnsFAQ = () => {
     <div className="space-y-6">
       {/* Shipping & Returns Overview Boxes */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-white p-4 border border-stone-200 rounded-sm flex items-start gap-3">
+        <div className="bg-[#8c0a15] p-4 border border-stone-200 rounded-sm flex items-start gap-3">
           <span className="text-2xl shrink-0">🚚</span>
           <div>
-            <h4 className="font-bold text-xs uppercase tracking-wider text-[#4a2e18] mb-1">Shipping Information</h4>
-            <p className="text-xs text-stone-600 leading-relaxed">
+            <h4 className="font-bold text-xs uppercase tracking-wider text-white mb-1">Shipping Information</h4>
+            <p className="text-xs text-white leading-relaxed">
               Dispatched within 24-48 hours. Free shipping available on all prepaid orders above Rs. 999.
             </p>
           </div>
         </div>
 
-        <div className="bg-white p-4 border border-stone-200 rounded-sm flex items-start gap-3">
+        <div className="bg-[#8c0a15] p-4 border border-stone-200 rounded-sm flex items-start gap-3">
           <span className="text-2xl shrink-0">🔄</span>
           <div>
-            <h4 className="font-bold text-xs uppercase tracking-wider text-[#4a2e18] mb-1">Returns & Exchange</h4>
-            <p className="text-xs text-stone-600 leading-relaxed">
+            <h4 className="font-bold text-xs uppercase tracking-wider text-white mb-1">Returns & Exchange</h4>
+            <p className="text-xs text-white leading-relaxed">
               7-Day easy returns policy. Unboxing video is mandatory for reporting any transit damages or missing components.
             </p>
           </div>

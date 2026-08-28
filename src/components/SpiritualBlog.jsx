@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// Lucide-react icons import (Terminal mein run karein: npm i lucide-react agar installed nahi hai)
 import { 
   Sparkles, 
   Gem, 
@@ -15,8 +14,8 @@ const allBlogArticles = [
   {
     id: 1,
     category: "Rudraksha",
-    title: "रुद्राक्ष धारण करने के नियम और इसके चमत्कारी लाभ",
-    excerpt: "शिव पुराण के अनुसार रुद्राक्ष पहनने से शारीरिक और मानसिक शांति मिलती है। जानिए इसे धारण करने की सही विधि...",
+    title: "Rules and Miraculous Benefits of Wearing Rudraksha",
+    excerpt: "According to Shiva Purana, wearing Rudraksha brings physical and mental peace. Learn the correct method to wear it...",
     author: "Gautam Sharma",
     readTime: "4 min read",
     date: "12 Aug 2026",
@@ -26,8 +25,8 @@ const allBlogArticles = [
   {
     id: 2,
     category: "Gemstones",
-    title: "नीलम रत्न (Blue Sapphire) किसे पहनना चाहिए?",
-    excerpt: "शनि देव का यह शक्तिशाली रत्न रातों-रात किस्मत बदल सकता है, लेकिन बिना सोचे-समझे पहनने से नुकसान भी हो सकता है...",
+    title: "Who Should Wear a Blue Sapphire (Neelam)?",
+    excerpt: "This powerful gemstone of Saturn can change fortunes overnight, but wearing it without proper guidance can cause harm...",
     author: "Akshita Singh",
     readTime: "6 min read",
     date: "10 Aug 2026",
@@ -37,8 +36,8 @@ const allBlogArticles = [
   {
     id: 3,
     category: "Vastu Shastra",
-    title: "घर में सुख-शांति के लिए वास्तु के ये सरल उपाय अपनाएं",
-    excerpt: "नकारात्मक ऊर्जा को दूर भगाने और सकारात्मक ऊर्जा का प्रवाह बढ़ाने के लिए अचूक वास्तु टिप्स और नियम...",
+    title: "Simple Vastu Tips to Bring Peace and Harmony at Home",
+    excerpt: "Infallible Vastu tips and rules to ward off negative energy and increase the flow of positive energy...",
     author: "Puspendra Singh",
     readTime: "5 min read",
     date: "05 Aug 2026",
@@ -48,8 +47,8 @@ const allBlogArticles = [
   {
     id: 4,
     category: "Karungali",
-    title: "करुंगाली (काला कपाली) माला के प्राचीन रहस्य",
-    excerpt: "दक्षिण भारत में अत्यधिक पूजनीय करुंगाली की लकड़ी शरीर के चक्रों को संतुलित करने में कैसे मदद करती है...",
+    title: "Ancient Secrets of Karungali (Black Ebony) Mala",
+    excerpt: "Highly revered in South India, how Karungali wood helps in balancing the body's chakras and energy...",
     author: "Gautam Sharma",
     readTime: "3 min read",
     date: "01 Aug 2026",
@@ -77,6 +76,28 @@ const allBlogArticles = [
     date: "25 Jul 2026",
     icon: <BookOpen className="w-10 h-10 text-[#d35400]" />,
     bgGradient: "from-[#fbf0ff] to-[#edd0fc]"
+  },
+  {
+    id: 7,
+    category: "Gemstones",
+    title: "The Astrological Significance of Wearing Ruby (Manik)",
+    excerpt: "Representing the Sun, Ruby bestows leadership qualities, confidence, and vitality upon the wearer...",
+    author: "Gautam Sharma",
+    readTime: "5 min read",
+    date: "20 Jul 2026",
+    icon: <Gem className="w-10 h-10 text-[#d35400]" />,
+    bgGradient: "from-[#eef5ff] to-[#d6e4fc]"
+  },
+  {
+    id: 8,
+    category: "Vastu Shastra",
+    title: "Mandir Placement: Ideal Vastu Directions for Pooja Room",
+    excerpt: "Discover the most auspicious direction for placing your home temple to maximize divine vibrations...",
+    author: "Puspendra Singh",
+    readTime: "4 min read",
+    date: "15 Jul 2026",
+    icon: <Home className="w-10 h-10 text-[#d35400]" />,
+    bgGradient: "from-[#f3f9f1] to-[#dcefd7]"
   }
 ];
 
@@ -86,7 +107,6 @@ const SpiritualBlog = () => {
 
   const categories = ["All", "Rudraksha", "Gemstones", "Vastu Shastra", "Karungali", "Hindu Rituals"];
 
-  // Filter articles based on Category and Search Query
   const filteredArticles = allBlogArticles.filter((article) => {
     const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
     const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -95,19 +115,19 @@ const SpiritualBlog = () => {
   });
 
   return (
-    <section className="relative w-full py-16 px-4 sm:px-6 lg:px-8 bg-[#fff3df]  border-b border-[#edd5b9] min-h-screen">
+    <section className="relative w-full py-16 px-4 sm:px-6 lg:px-8 bg-[#fff3df] border-b border-[#edd5b9] min-h-screen">
       <div className="max-w-[1400px] mx-auto">
         
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-[#d35400]  tracking-widest text-xs bg-[#fff3df] px-3.5 py-1.5 rounded-full border border-[#edd5b9] inline-block mb-3">
+          <span className="text-[#8b3a2b] tracking-widest text-xs font-semibold uppercase bg-white px-4 py-1.5 rounded-full border border-[#edd5b9] inline-block mb-3 shadow-sm">
             Knowledge Centre & Blogs
           </span>
-          <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#4a2e18] mb-4 leading-tight">
-          Spiritual Blog | Knowledge Centre
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#4a2e18] mb-3">
+            Spiritual Blog & Knowledge Hub
           </h1>
-          <p className="text-gray-600 text-sm sm:text-base font-sans leading-relaxed">
-            वेदों, पुराणों और प्राचीन सनातन परंपराओं से जुड़े गहरे रहस्यों, पूजा विधि और आध्यात्मिक ज्ञान को जानें।
+          <p className="text-stone-600 text-sm sm:text-base font-sans leading-relaxed">
+            Explore deep secrets, sacred rituals, and spiritual wisdom derived from ancient Vedic traditions.
           </p>
 
           {/* Search Bar */}
@@ -118,9 +138,9 @@ const SpiritualBlog = () => {
                 placeholder="Search blogs (e.g. Rudraksha, Vastu, Pooja)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-5 py-3.5 pl-12 rounded-full border border-[#edd5b9] bg-white text-sm text-[#4a2e18] focus:outline-none focus:border-[#d35400] shadow-sm transition-all"
+                className="w-full px-5 py-3.5 pl-12 rounded-full border border-[#edd5b9] bg-white text-sm text-[#4a2e18] focus:outline-none focus:border-[#8b3a2b] shadow-sm transition-all"
               />
-              <Search className="absolute left-4 top-3.5 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-4 top-3.5 w-5 h-5 text-stone-400" />
             </div>
           </div>
 
@@ -130,10 +150,10 @@ const SpiritualBlog = () => {
               <button
                 key={idx}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 border ${
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm cursor-pointer ${
                   selectedCategory === cat
-                    ? "bg-[#d35400] text-white border-[#d35400] shadow-md scale-105"
-                    : "bg-white text-[#4a2e18] border-[#edd5b9] hover:bg-[#fff3df]"
+                    ? "bg-[#6b2314] text-white shadow-md scale-105"
+                    : "bg-white text-[#4a2e18] border border-[#e6d0b3] hover:bg-[#fdf2f0] hover:border-[#8b3a2b]"
                 }`}
               >
                 {cat}
@@ -142,71 +162,71 @@ const SpiritualBlog = () => {
           </div>
         </div>
 
-        {/* Blog Cards Grid */}
+        {/* Blog Cards Grid (Updated to 4 columns on large screens) */}
         {filteredArticles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-2">
             {filteredArticles.map((article) => (
               <div
                 key={article.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#e6d0b3] flex flex-col justify-between transform transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:border-[#d35400] cursor-pointer group"
+                className="bg-white border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-xl transition-all duration-300 cursor-pointer group relative hover:-translate-y-1"
               >
-                {/* Icon Banner Container (Replaced Image with Gradient & React Icon) */}
-                <div className={`relative h-44 bg-gradient-to-br ${article.bgGradient} flex items-center justify-center overflow-hidden border-b border-[#edd5b9]`}>
-                  <div className="p-4 bg-white/80 backdrop-blur-md rounded-2xl shadow-md group-hover:scale-110 transition-transform duration-500">
-                    {article.icon}
+                <div>
+                  {/* Icon Banner Container */}
+                  <div className={`relative w-full h-48 bg-gradient-to-br ${article.bgGradient} border border-stone-200 rounded-sm mb-4 overflow-hidden flex items-center justify-center`}>
+                    <div className="p-3 bg-white/90 backdrop-blur-md rounded-xl shadow-md group-hover:scale-110 transition-transform duration-500">
+                      {article.icon}
+                    </div>
+                    <span className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm text-[#8b3a2b] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm border border-[#edd5b9]">
+                      {article.category}
+                    </span>
                   </div>
-                  <span className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#d35400] text-xs font-bold px-3 py-1 rounded-full shadow border border-[#edd5b9]">
-                    {article.category}
-                  </span>
+
+                  {/* Date & Read Time */}
+                  <div className="flex items-center justify-between text-[11px] text-stone-400 mb-2 font-sans">
+                    <span>{article.date}</span>
+                    <span>{article.readTime}</span>
+                  </div>
+
+                  {/* Blog Title */}
+                  <h3 className="text-[#4a2e18] text-sm sm:text-base mb-2 leading-snug group-hover:text-[#8b3a2b] transition-colors line-clamp-2">
+                    {article.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="text-stone-600 text-xs sm:text-sm line-clamp-3 mb-4 font-sans leading-relaxed">
+                    {article.excerpt}
+                  </p>
                 </div>
 
-                {/* Content Area */}
-                <div className="p-6 flex flex-col flex-grow justify-between">
-                  <div>
-                    <div className="flex items-center justify-between text-xs text-gray-400 mb-3 font-sans">
-                      <span>{article.date}</span>
-                      <span>{article.readTime}</span>
-                    </div>
-
-                    <h2 className="font-serif font-bold text-[#4a2e18] text-lg sm:text-xl mb-3 leading-snug group-hover:text-[#d35400] transition-colors line-clamp-2">
-                      {article.title}
-                    </h2>
-
-                    <p className="text-gray-600 text-xs sm:text-sm line-clamp-3 mb-6 font-sans leading-relaxed">
-                      {article.excerpt}
-                    </p>
-                  </div>
-
-                  {/* Author & Read More Footer */}
-                  <div className="pt-4 border-t border-[#f3e5d8] flex items-center justify-between">
-                    <span className="text-xs font-medium text-gray-500">
-                      By <strong className="text-[#4a2e18]">{article.author}</strong>
-                    </span>
-                    <span className="text-xs font-bold text-[#d35400] uppercase tracking-wider group-hover:underline flex items-center gap-1">
-                      More Details <ArrowRight className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
+                {/* Author & Read More Footer */}
+                <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
+                  <span className="text-[11px] font-medium text-stone-500">
+                    By <strong className="text-[#4a2e18]">{article.author}</strong>
+                  </span>
+                  <span className="text-xs font-bold text-[#8b3a2b] uppercase tracking-wider group-hover:underline flex items-center gap-1">
+                    Read More <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="text-center py-16">
-            <p className="text-lg text-gray-500 font-serif">कोई लेख (Blog) नहीं मिला। कृपया दूसरा कीवर्ड खोजें।</p>
+            <p className="text-base text-stone-600 font-serif">No articles found. Please try searching with a different keyword.</p>
           </div>
         )}
 
         {/* Bottom Call to Action Section */}
-        <div className="mt-16 bg-gradient-to-r from-[#fff3df] to-[#fef8f0] border border-[#edd5b9] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between shadow-sm">
+        <div className="mt-16 bg-white border border-[#edd5b9] rounded-sm p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between shadow-sm">
           <div className="mb-6 sm:mb-0 text-center sm:text-left">
-            <h3 className="font-serif font-bold text-2xl text-[#4a2e18] mb-2">
-              क्या आपके मन में पूजा-पाठ या ज्योतिष से जुड़ा कोई सवाल है?
+            <h3 className="font-serif font-bold text-xl sm:text-2xl text-[#4a2e18] mb-2">
+              Have questions regarding rituals or astrology?
             </h3>
-            <p className="text-gray-600 text-sm sm:text-base">
-              हमारे वरिष्ठ पंडितों और आध्यात्मिक विशेषज्ञों से सीधे परामर्श लें।
+            <p className="text-stone-600 text-xs sm:text-sm">
+              Get direct consultation from our senior priests and spiritual experts.
             </p>
           </div>
-          <button className="bg-[#d35400] hover:bg-[#b54600] text-white px-8 py-3.5 rounded-xl font-medium text-sm shadow-md transition-all transform hover:scale-105 flex-shrink-0 flex items-center gap-2">
+          <button className="bg-[#4a2e18] hover:bg-[#321e10] text-white px-6 py-3 rounded-sm text-xs font-semibold uppercase tracking-wider transition-all shadow-sm flex items-center gap-2 cursor-pointer">
             <UserCheck className="w-4 h-4" /> Consult Expert Now
           </button>
         </div>

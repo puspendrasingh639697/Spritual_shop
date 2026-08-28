@@ -4,13 +4,13 @@ import whyChooseImage from "../assets/Desktop_Why_choose_divine_hindu.webp";
 
 export default function WhyChooseUsSection() {
   return (
-    <section className="w-full my-8">
-      {/* 100% Full Width Container bina kisi left-right padding ke */}
-      <div className="w-full overflow-hidden">
+    <section className="w-full my-8 bg-[#fff3df]">
+      {/* Container with theme background to fill any gaps */}
+      <div className="w-full overflow-hidden bg-[#fff3df] flex items-center justify-center">
         <img 
           src={whyChooseImage} 
           alt="Why Choose Divine Hindu" 
-          className="w-full h-auto object-cover block"
+          className="w-full h-auto object-cover block bg-[#fff3df]"
         />
       </div>
     </section>

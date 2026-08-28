@@ -34,7 +34,7 @@ const MediaInNews = () => {
             <div key={item.id} className="flex flex-col items-center text-center px-2">
               
               {/* Circular Icon Container */}
-              <div className="w-16 h-16 sm:w-20 sm:h-20  flex items-center justify-center p-3 mb-4 shadow-sm">
+              <div className="w-16 h-16 sm:w-20 sm:h-20  flex items-center justify-center p-3 mb-4">
                 <img 
                   src={item.image} 
                   alt={item.title} 

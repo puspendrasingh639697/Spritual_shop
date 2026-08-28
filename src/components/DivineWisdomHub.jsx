@@ -50,10 +50,10 @@ const CleanFeatureSection = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h4 className="font-serif font-bold text-[#4a2e18] text-base sm:text-lg mb-2">
+              <h4 className=" text-[#4a2e18] text-base sm:text-lg mb-2">
                 {item.title}
               </h4>
-              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-xs font-sans font-normal">
+              <p className="text-gray-600 text-xs sm:text-sm leading-relaxed max-w-x">
                 {item.description}
               </p>
             </div>

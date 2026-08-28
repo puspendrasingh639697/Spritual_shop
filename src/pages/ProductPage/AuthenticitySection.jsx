@@ -4,9 +4,9 @@ import { RiShieldCheckLine } from "react-icons/ri";
 
 const AuthenticitySection = ({ product }) => {
   return (
-    <div className="bg-white p-6 border border-stone-200 rounded-sm shadow-sm mb-6">
-      <h3 className="text-base font-serif text-[#4a2e18] mb-4 flex items-center gap-2">
-        <MdVerified className="text-xl text-[#b8860b]" /> Authenticity & Certification
+    <div className="bg-[#8c0a15] p-6 border border-stone-200 rounded-sm shadow-sm mb-6">
+      <h3 className="text-base font-serif text-white mb-4 flex items-center gap-2">
+        <MdVerified className="text-xl text-white" /> Authenticity & Certification
       </h3>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
         <div className="flex items-start gap-3 p-3 bg-stone-50 border border-stone-200 rounded-sm">

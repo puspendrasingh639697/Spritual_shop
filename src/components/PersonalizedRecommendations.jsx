@@ -1,62 +1,60 @@
-import React from "react";
-
-const recommendedProducts = [
-  {
-    id: 1,
-    title: "Personalized Crystal Energized Bracelet",
-    price: "Rs. 1,650.00",
-    originalPrice: "Rs. 2,400.00",
-    rating: 5.0,
-    reviews: 14,
-    badge: "FOR YOU",
-    image: "/src/assets/image2.jpg"
-  },
-  {
-    id: 2,
-    title: "Birthstone Silver Ring for Planetary Peace",
-    price: "Rs. 2,899.00",
-    originalPrice: "Rs. 3,999.00",
-    rating: 4.9,
-    reviews: 28,
-    badge: "RECOMMENDED",
-    image: "/src/assets/image3.jpg"
-  },
-  {
-    id: 3,
-    title: "Customized Name Energized Rudraksha Mala",
-    price: "Rs. 1,450.00",
-    originalPrice: "Rs. 2,100.00",
-    rating: 5.0,
-    reviews: 36,
-    badge: "BEST MATCH",
-    image: "/src/assets/Rudraksha.webp"
-  },
-  {
-    id: 4,
-    title: "Vastu Harmonization Copper Yantra Plate",
-    price: "Rs. 2,200.00",
-    originalPrice: "Rs. 3,000.00",
-    rating: 4.8,
-    reviews: 19,
-    badge: "POPULAR",
-    image: "/src/assets/DSC00929.jpg"
-  }
-];
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BiShoppingBag, BiStar, BiHeart } from "react-icons/bi";
+import useProductStore from "../store/useProductStore";
+import useCartStore from "../store/useCartStore";
 
 const PersonalizedRecommendations = () => {
-  const handleAddToCart = (item, e) => {
+  const navigate = useNavigate();
+  const { products, fetchProducts } = useProductStore();
+  const { addToCart, setUserId } = useCartStore();
+
+  const [toastMsg, setToastMsg] = useState(null);
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchProducts();
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const actualUserId = user.id || user._id || localStorage.getItem('cartUserId');
+      if (actualUserId) setUserId(actualUserId);
+    };
+    init();
+  }, [fetchProducts, setUserId]);
+
+  const recommendedProducts = products.slice(0, 4);
+
+  const handleAddToCart = async (product, e) => {
     e.stopPropagation();
-    console.log(`Added personalized item to cart: ${item.title}`);
+    const prodId = product._id || product.id;
+    const result = await addToCart(prodId, 1);
+
+    if (result && result.success) {
+      setToastMsg(`${product.name || product.title} added to cart! 🛒`);
+    } else {
+      setToastMsg(result?.error || "Failed to add to cart");
+    }
+    setTimeout(() => setToastMsg(null), 3000);
   };
 
-  const handleCardClick = (item) => {
-    console.log(`Viewing item: ${item.title}`);
-  };
+  if (!products || products.length === 0) {
+    return (
+      <div className="bg-[#fff3df] py-16 text-center text-[#4a2e18]">
+        <div className="w-8 h-8 border-4 border-[#6b2314] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+        <p className="text-sm">Loading divine recommendations...</p>
+      </div>
+    );
+  }
 
   return (
-    <section className="bg-[#fff3df] py-16 px-4 overflow-hidden ">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="bg-[#fff3df] py-16 px-4 overflow-hidden relative">
+      {/* Toast Notification */}
+      {toastMsg && (
+        <div className="fixed top-4 right-4 bg-[#4a2e18] text-white px-5 py-2.5 rounded-lg shadow-xl z-50 text-xs font-medium">
+          {toastMsg}
+        </div>
+      )}
 
+      <div className="max-w-[1400px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-4">
           <span className="text-xs uppercase tracking-widest text-[#8b3a2b] font-semibold">
@@ -68,67 +66,92 @@ const PersonalizedRecommendations = () => {
           <div className="w-16 h-[2px] bg-[#8b3a2b] mx-auto mt-3 rounded-full"></div>
         </div>
 
-        <p className="text-center text-xs sm:text-sm text-[#5c3a21] max-w-xl mx-auto mb-10">
-          Based on your browsing and spiritual preference, here are products specially handpicked to bring positivity and divine grace into your life.
-        </p>
+        
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {recommendedProducts.map((product) => (
-            <div 
-              key={product.id}
-              onClick={() => handleCardClick(product)}
-              className="bg-white rounded-xl shadow-sm border border-[#e6d0b3] flex flex-col justify-between overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-            >
-              {/* Image & Badge Container */}
-              <div className="relative w-full h-[280px] bg-[#fdf2f0] overflow-hidden flex items-center justify-center p-4 border-b border-[#f0e4d7]">
-                {product.badge && (
-                  <span className="absolute top-3 left-3 bg-[#8b3a2b] text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded">
-                    {product.badge}
-                  </span>
-                )}
-                <img 
-                  src={product.image} 
-                  alt={product.title} 
-                  loading="lazy"
-                  className="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {recommendedProducts.map((product) => {
+            const prodId = product._id || product.id;
+            const prodImage = product.image;
 
-              {/* Product Info */}
-              <div className="p-5 flex flex-col items-center text-center flex-grow">
-                <span className="text-[11px] uppercase tracking-wider text-[#8b3a2b] font-medium mb-1">
-                  Divine Hindu
-                </span>
-                <h3 className="text-xs sm:text-sm font-serif text-[#3d2314] font-medium leading-snug line-clamp-2 mb-3 group-hover:text-[#8b3a2b] transition-colors">
-                  {product.title}
-                </h3>
-
-                {/* Rating */}
-                <div className="flex items-center gap-1 mb-3 text-amber-500 text-xs">
-                  <span>★</span>
-                  <span className="text-[#3d2314] font-semibold">{product.rating}</span>
-                  <span className="text-gray-400">({product.reviews})</span>
-                </div>
-
-                {/* Price Section */}
-                <div className="flex items-center gap-2 mb-4 mt-auto">
-                  <span className="text-sm sm:text-base font-semibold text-[#8b3a2b]">{product.price}</span>
-                  <span className="text-xs text-gray-400 line-through">{product.originalPrice}</span>
-                </div>
-              </div>
-
-              {/* Add to Cart Button */}
-              <button 
-                onClick={(e) => handleAddToCart(product, e)}
-                className="w-full bg-[#4a2e18] hover:bg-[#8b3a2b] text-white text-xs font-semibold uppercase tracking-wider py-3.5 transition-colors duration-200"
+            return (
+              <div 
+                key={prodId}
+                onClick={() => {
+                  navigate(`/product/${prodId}`);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="bg-white border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
               >
-                Add to Cart
-              </button>
-            </div>
-          ))}
-        </div>
+                <div>
+                  {/* Product Image Box */}
+                  <div className="w-full h-56 bg-stone-50 border border-stone-200 rounded-sm mb-3 overflow-hidden flex items-center justify-center relative">
+                    {prodImage && prodImage !== '/placeholder.jpg' ? (
+                      <img
+                        src={prodImage}
+                        alt={product.name || product.title}
+                        className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          e.target.src = 'https://via.placeholder.com/400x400?text=Image+Not+Found';
+                        }}
+                      />
+                    ) : (
+                      <div className="text-stone-300 text-xs">No Image</div>
+                    )}
 
+                    <button 
+                      onClick={(e) => { 
+                        e.stopPropagation(); 
+                        setToastMsg("Added to wishlist ❤️");
+                        setTimeout(() => setToastMsg(null), 2000);
+                      }}
+                      className="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full hover:bg-white text-stone-600 hover:text-red-500 transition shadow-sm"
+                    >
+                      <BiHeart className="text-lg" />
+                    </button>
+                  </div>
+
+                  {/* Vendor / Category Label */}
+                  <p className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold mb-1">
+                    {product.category?.name || "IDOLS"}
+                  </p>
+
+                  {/* Product Title */}
+                  <h4 className="text-xs sm:text-sm font-serif text-[#4a2e18] mb-2 line-clamp-2 leading-snug">
+                    {product.name || product.title}
+                  </h4>
+
+                  {/* Rating */}
+                  <div className="flex items-center gap-1 text-amber-500 text-xs mb-3">
+                    <BiStar className="fill-amber-500" />
+                    <span className="font-bold text-stone-700">{product.rating || 4.8}</span>
+                    <span className="text-stone-400 text-[11px]">({product.reviewsCount || 24})</span>
+                  </div>
+                </div>
+
+                {/* Price & Action Button */}
+                <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
+                  <div>
+                    <span className="text-sm font-bold text-[#8b3a2b]">
+                      Rs. {product.price?.toLocaleString()}
+                    </span>
+                    {product.oldPrice && (
+                      <span className="block text-[11px] text-stone-400 line-through">
+                        Rs. {product.oldPrice?.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    onClick={(e) => handleAddToCart(product, e)}
+                    className="bg-[#4a2e18] hover:bg-[#321e10] text-white px-3 py-1.5 rounded-sm text-xs transition flex items-center gap-1"
+                  >
+                    <BiShoppingBag className="text-base" /> View
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
