@@ -11,6 +11,7 @@ import LatestTrending from "../components/LatestTrending";
 import DivineWisdomHub from "../components/DivineWisdomHub";
 import FAQSection from "../components/FAQSection";
 import WhyChooseUsSection from "./WhyChooseUsSection";
+import BlogsSection from "../pages/Blogpage/BlogsSection";
 
 const Home = () => {
   return (
@@ -22,7 +23,8 @@ const Home = () => {
       <PersonalizedRecommendations />
       <MediaInNews />
       <CustomerReviews />
-      <SpiritualBlog />
+      {/* <SpiritualBlog /> */}
+      {/* <BlogsSection /> */}
       <LatestTrending />
       <DivineWisdomHub />
       <WhyChooseUsSection/>
