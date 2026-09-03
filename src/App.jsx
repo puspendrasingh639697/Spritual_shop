@@ -41,6 +41,8 @@ import BookPuja from "./components/BookEPuja/BookPuja";
 import PanditBookingPage from "./components/PanditBooking/PanditBookingPage";
 import PanditPackage from "./components/PanditBooking/PanditPackage";
 import PanditForm from "./components/PanditBooking/PanditForm";
+import PopularChadhavaSection from "./components/Chadhawa/ChadhawaHomepage";
+import Chadhawa from "./components/Chadhawa/Chadhawa";
 
 // ✅ YEH NAYA COMPONENT ADD KIYA HAI (Already Logged In User ko Login page se redirect karega)
 const RedirectIfLoggedIn = ({ children }) => {
@@ -105,6 +107,7 @@ function MainLayout() {
           <Route path="/pandit-package/:id" element={<PanditPackage />} />
 
           <Route path="/panditform" element={<PanditForm />} />
+          <Route path="/Chadhawa" element={<Chadhawa />} />
           {/* Product Details - Sabke liye khula (Bina Login ke bhi) */}
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/checkout" element={<Checkout />} />

@@ -849,7 +849,7 @@ function Navbar() {
                             </li>
 
                             <li>
-                                <Link to="/chadhawa" className={`transition-colors pb-1 ${location.pathname === "/chadhawa" ? "text-[#8c0a15] border-b-2 border-[#8c0a15]" : "hover:text-[#8c0a15]"}`}>Chadhawa</Link>
+                                <Link to="/Chadhawa" className={`transition-colors pb-1 ${location.pathname === "/chadhawa" ? "text-[#8c0a15] border-b-2 border-[#8c0a15]" : "hover:text-[#8c0a15]"}`}>Chadhawa</Link>
                             </li>
                             <li>
                                 <Link to="/blogs" className={`transition-colors pb-1 ${location.pathname === "/blogs" ? "text-[#8c0a15] border-b-2 border-[#8c0a15]" : "hover:text-[#8c0a15]"}`}>Blogs</Link>
