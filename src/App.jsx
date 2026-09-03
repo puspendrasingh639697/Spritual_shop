@@ -38,6 +38,9 @@ import Checkout from "./pages/CartCheckoutFlow/Checkout";
 import BlogDetail from "./pages/Blogpage/BlogPostDetail";
 import BigTempleCarousel from "./components/BookEPuja/BigTempleCarousel";
 import BookPuja from "./components/BookEPuja/BookPuja";
+import PanditBookingPage from "./components/PanditBooking/PanditBookingPage";
+import PanditPackage from "./components/PanditBooking/PanditPackage";
+import PanditForm from "./components/PanditBooking/PanditForm";
 
 // ✅ YEH NAYA COMPONENT ADD KIYA HAI (Already Logged In User ko Login page se redirect karega)
 const RedirectIfLoggedIn = ({ children }) => {
@@ -97,8 +100,11 @@ function MainLayout() {
           <Route path="/festivals" element={<FestivalCollection />} />
           <Route path="/blogs" element={<SpiritualBlog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/book-puja" element={<BookPuja />} />
-          
+          <Route path="/pooja-booking" element={<BookPuja />} />
+          <Route path="/pandit-booking" element={<PanditBookingPage />} />
+          <Route path="/pandit-package/:id" element={<PanditPackage />} />
+
+          <Route path="/panditform" element={<PanditForm />} />
           {/* Product Details - Sabke liye khula (Bina Login ke bhi) */}
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/checkout" element={<Checkout />} />
