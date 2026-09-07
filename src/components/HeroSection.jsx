@@ -76,33 +76,38 @@ import logoFreeTitle from "../assets/logofreetitle.png";
 
 function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]   px-4 md:px-10">
+    <section className="relative w-full overflow-hidden bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]   md:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 lg:gap-16">
         
         {/* Left Content */}
-        <div className="flex flex-col items-start text-left z-10 space-y-5">
-         
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#4a2e18] leading-[1.15]">
-            Unlock The <span className="text-[#df972b]">Power Of Divine Blessings</span>
-          </h1>
-          <p className="text-black text-sm md:text-base leading-relaxed max-w-lg">
-            Experience sacred pujas, authentic rituals, and spiritual guidance designed to bring peace, positivity, and prosperity into your life with Puja Heetu.
-          </p>
-          <div className="pt-2 flex items-center gap-4">
-            <Link 
-              to="/pandit-booking" 
-              className="bg-[#df972b] hover:bg-[#c27803] text-white font-bold px-7 py-3 rounded-md shadow-md transition-all duration-300 text-sm md:text-base"
-            >
-              Book Pandit Ji
-            </Link>
-            <Link 
-              to="/pooja-booking" 
-              className="border-2 border-[#4a2e18] text-[#4a2e18] hover:bg-[#4a2e18] hover:text-white font-bold px-7 py-3 rounded-md transition-all duration-300 text-sm md:text-base"
-            >
-              Explore Pujas
-            </Link>
-          </div>
-        </div>
+       {/* Parent Container */}
+<div className="w-full min-h-[500px] flex flex-col justify-start items-start pt-4 px-4">
+  
+  {/* Your Content Component */}
+  <div className="flex flex-col items-start text-left z-10 space-y-5">
+    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#4a2e18] leading-[1.15]">
+      Unlock The <span className="text-[#df972b]">Power Of Divine Blessings</span>
+    </h1>
+    <p className="text-black text-sm md:text-base leading-relaxed max-w-lg">
+      Experience sacred pujas, authentic rituals, and spiritual guidance designed to bring peace, positivity, and prosperity into your life with Puja Heetu.
+    </p>
+    <div className="pt-2 flex items-center gap-4">
+      <Link 
+        to="/pandit-booking" 
+        className="bg-[#df972b] hover:bg-[#c27803] text-white font-bold px-7 py-3 rounded-md shadow-md transition-all duration-300 text-sm md:text-base"
+      >
+        Book Pandit Ji
+      </Link>
+      <Link 
+        to="/pooja-booking" 
+        className="border-2 border-[#4a2e18] text-[#4a2e18] hover:bg-[#4a2e18] hover:text-white font-bold px-7 py-3 rounded-md transition-all duration-300 text-sm md:text-base"
+      >
+        Explore Pujas
+      </Link>
+    </div>
+  </div>
+
+</div>
 
         {/* Right Side: logofreetitle.png aligned and 360 Degree Spinning like reference */}
         <div className="relative flex justify-center items-center">
