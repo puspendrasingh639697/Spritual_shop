@@ -76,7 +76,7 @@ import logoFreeTitle from "../assets/logofreetitle.png";
 
 function HeroSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#fff3df]  px-4 md:px-10">
+    <section className="relative w-full overflow-hidden bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]   px-4 md:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 lg:gap-16">
         
         {/* Left Content */}
@@ -139,3 +139,5 @@ function HeroSection() {
 }
 
 export default HeroSection;
+
+

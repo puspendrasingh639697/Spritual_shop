@@ -17,6 +17,7 @@ import SacredServicesSection from "../services/sacredServices";
 import RecommendedPujaSection from "../components/BookEPuja/RecommendedPujaSection"
 import ChadhawaSection from "./Chadhawa/ChadhawaSection";
 import InsightsSection from "../pages/Blogpage/blogList";
+import FeaturesGridSection from "./FeaturesGridSection";
 
 const Home = () => {
   return (
@@ -34,11 +35,12 @@ const Home = () => {
       {/* <MediaInNews /> */}
       <CustomerReviews />
       <InsightsSection/>
+      <FeaturesGridSection/>
       {/* <SpiritualBlog /> */}
       {/* <BlogsSection /> */}
-      <LatestTrending />
+      {/* <LatestTrending /> */}
       <DivineWisdomHub />
-      <WhyChooseUsSection/>
+      {/* <WhyChooseUsSection/> */}
       <FAQSection />
     </>
   );

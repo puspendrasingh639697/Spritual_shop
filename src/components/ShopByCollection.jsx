@@ -265,7 +265,7 @@ const CategoryProductGrid = ({ activeTab }) => {
               navigate(`/product/${prodId}`);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="bg-yellow-400 border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
+            className="bg-yellow-600 border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
           >
             <div>
               {/* Product Image Box */}
@@ -361,7 +361,7 @@ const ShopByCollection = () => {
               onClick={() => setActiveTab(category)}
               className={`px-6 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm cursor-pointer ${
                 activeTab === category
-                  ? "bg-yellow-500 text-white shadow-md scale-105"
+                  ? "bg-yellow-600 text-white shadow-md scale-105"
                   : "bg-white text-[#4a2e18] border border-[#e6d0b3] hover:bg-[#fdf2f0] hover:border-[#8b3a2b]"
               }`}
             >

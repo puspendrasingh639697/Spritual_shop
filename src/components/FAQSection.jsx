@@ -63,14 +63,14 @@ const FAQSection = () => {
             return (
               <div 
                 key={index}
-                className="bg-white border border-[#edd5b9] rounded-xl shadow-sm transition-all duration-300 overflow-hidden"
+                className="bg-gradient-to-r from-[#df972b] border border-[#edd5b9] rounded-xl shadow-sm transition-all duration-300 overflow-hidden"
               >
                 {/* Question Header */}
                 <button
                   onClick={() => toggleFAQ(index)}
                   className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none group cursor-pointer"
                 >
-                  <span className="font-serif font-medium text-[#4a2e18] text-base sm:text-lg group-hover:text-[#d35400] transition-colors pr-4">
+                  <span className=" font-medium text-[#4a2e18] text-base sm:text-lg group-hover:text-[#d35400] transition-colors pr-4">
                     {faq.question}
                   </span>
                   
@@ -88,7 +88,7 @@ const FAQSection = () => {
                 <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
                   isOpen ? "max-h-96 opacity-100 pb-6 px-6" : "max-h-0 opacity-0 px-6"
                 }`}>
-                  <div className="border-t border-[#edd5b9]/50 pt-4 text-gray-600 font-sans text-sm sm:text-base leading-relaxed">
+                  <div className="border-t border-[#edd5b9]/50 pt-4 text-gray-600 text-sm sm:text-base leading-relaxed">
                     {faq.answer}
                   </div>
                 </div>

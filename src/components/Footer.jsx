@@ -4,7 +4,7 @@ import footerBg from "../assets/gropImages.webp";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#8c0a15] text-white">
+    <footer className="w-full bg-gradient-to-r from-[#df972b] to-[#c27803] text-white">
       
       {/* =======================================
           TOP SECTION: Links & Info (Solid Red)
@@ -129,7 +129,7 @@ const Footer = () => {
       {/* =======================================
           BOTTOM SECTION: User Active UI & Corporate Info
       ======================================== */}
-      <div className="w-full bg-[#73050f] py-6 px-4 border-t border-[#8c0a15]">
+      <div className="w-full bg-gradient-to-r from-[#df972b] to-[#c27803] py-6 px-4 border-t border-[#8c0a15]">
         <div className="max-w-[1400px] mx-auto flex flex-col items-center text-center space-y-3">
           
         
