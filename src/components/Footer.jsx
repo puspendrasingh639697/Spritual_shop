@@ -119,12 +119,7 @@ const Footer = () => {
       {/* =======================================
           MIDDLE SECTION: Illustration Image
       ======================================== */}
-      <div 
-        className="w-full h-40 sm:h-56 md:h-72 lg:h-80 bg-bottom bg-cover sm:bg-contain bg-no-repeat border-t-2 border-b border-[#a81a24] shadow-inner"
-        style={{ backgroundImage: `url(${footerBg})` }}
-      >
-        {/* Clean background image container */}
-      </div>
+      
 
       {/* =======================================
           BOTTOM SECTION: User Active UI & Corporate Info
