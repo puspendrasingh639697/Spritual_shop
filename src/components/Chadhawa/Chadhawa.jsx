@@ -1,6 +1,7 @@
 import React from "react";
 import PopularChadhavaSection from "./ChadhawaHomepage";
 import AllChadhavasSection from "./AllChadhavasSection";
+import RecentChadhavaPhotos from "./RecentChadhavaData";
 // import Navbar from "../components/Navbar";
 // import ChadhawaHero from "../components/ChadhawaHero"; // Jo pehla hero code diya tha
 // import PopularChadhavaSection from "../components/PopularChadhavaSection"; // Popular section wala code
@@ -14,6 +15,7 @@ function Chadhawa() {
                 {/* <ChadhawaHero /> */}
                 <PopularChadhavaSection />
                 <AllChadhavasSection />
+                <RecentChadhavaPhotos/>
             </div>
         </div>
     );

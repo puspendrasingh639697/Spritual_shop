@@ -265,7 +265,7 @@ const CategoryProductGrid = ({ activeTab }) => {
               navigate(`/product/${prodId}`);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="bg-white border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
+            className="bg-yellow-400 border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
           >
             <div>
               {/* Product Image Box */}
@@ -289,7 +289,7 @@ const CategoryProductGrid = ({ activeTab }) => {
               </div>
 
               {/* Vendor / Category Label */}
-              <p className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold mb-1">
+              <p className="text-[11px] uppercase tracking-wider text-black font-semibold mb-1">
                 {product.category?.name || activeTab}
               </p>
 
@@ -300,9 +300,9 @@ const CategoryProductGrid = ({ activeTab }) => {
 
               {/* Rating */}
               <div className="flex items-center gap-1 text-amber-500 text-xs mb-3">
-                <BiStar className="fill-amber-500" />
+                <BiStar className="fill-amber-800" />
                 <span className="font-bold text-stone-700">{product.rating || 4.8}</span>
-                <span className="text-stone-400 text-[11px]">(24)</span>
+                <span className="text-black text-[11px]">(24)</span>
               </div>
             </div>
 
@@ -324,7 +324,7 @@ const CategoryProductGrid = ({ activeTab }) => {
                   navigate(`/product/${prodId}`);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="bg-[#4a2e18] hover:bg-[#321e10] text-white px-3 py-1.5 rounded-sm text-xs transition flex items-center gap-1"
+                className="bg-yellow-800 hover:bg-[#321e10] text-white px-3 py-1.5 rounded-sm text-xs transition flex items-center gap-1"
               >
                 <BiShoppingBag className="text-base" /> View
               </button>
@@ -343,9 +343,9 @@ const ShopByCollection = () => {
     <div className="bg-[#fff3df] py-16 px-4 overflow-hidden border-y border-[#edd5b9]">
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl font-serif text-[#4a2e18] tracking-wide inline-block font-semibold">
+          <h2 className="text-3xl sm:text-4xl  text-[#4a2e18] tracking-wide inline-block font-semibold">
             {activeTab === "Best Sellers" ? (
-              <>Bestsellers of <span className="italic font-normal">the Month</span></>
+              <>E-Shop <span className="">the Month</span></>
             ) : (
               <>Shop by <span className="italic font-normal">{activeTab}</span></>
             )}
@@ -359,9 +359,9 @@ const ShopByCollection = () => {
             <button
               key={index}
               onClick={() => setActiveTab(category)}
-              className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm cursor-pointer ${
+              className={`px-6 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm cursor-pointer ${
                 activeTab === category
-                  ? "bg-[#6b2314] text-white shadow-md scale-105"
+                  ? "bg-yellow-500 text-white shadow-md scale-105"
                   : "bg-white text-[#4a2e18] border border-[#e6d0b3] hover:bg-[#fdf2f0] hover:border-[#8b3a2b]"
               }`}
             >

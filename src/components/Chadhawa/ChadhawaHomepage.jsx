@@ -44,7 +44,7 @@ function PopularChadhavaSection() {
     };
 
     return (
-        <section className="w-full py-12 px-4 md:px-12 bg-gradient-to-b from-[#f99d1c] to-[#f47c12] relative overflow-hidden font-sans">
+        <section className="w-full py-12 px-4 md:px-12 bg-gradient-to-b from-[#f99d1c] to-[#f47c12] relative overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 
                 {/* Section Header */}
@@ -110,7 +110,7 @@ function PopularChadhavaSection() {
                                 <div className="p-4 pt-0">
                                     <Link 
                                         to={item.link}
-                                        className="block w-full bg-[#751185] hover:bg-[#5e0c6a] text-white font-bold py-3 px-4 rounded-xl text-center text-sm shadow-md transition-colors duration-200"
+                                        className="block w-full bg-red-800 hover:bg-[#5e0c6a] text-white font-bold py-3 px-4 rounded-xl text-center text-sm shadow-md transition-colors duration-200"
                                     >
                                         Offer Chadhawa
                                     </Link>

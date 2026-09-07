@@ -12,17 +12,28 @@ import DivineWisdomHub from "../components/DivineWisdomHub";
 import FAQSection from "../components/FAQSection";
 import WhyChooseUsSection from "./WhyChooseUsSection";
 import BlogsSection from "../pages/Blogpage/BlogsSection";
+import ExplorePilgrimage from "./Tample/ExplorePilgrimage";
+import SacredServicesSection from "../services/sacredServices";
+import RecommendedPujaSection from "../components/BookEPuja/RecommendedPujaSection"
+import ChadhawaSection from "./Chadhawa/ChadhawaSection";
+import InsightsSection from "../pages/Blogpage/blogList";
 
 const Home = () => {
   return (
     <>
       <HeroSection />
-      <ShopByCategory />
-      <AstrologyRemedies />
+      <ExplorePilgrimage/>
+      <SacredServicesSection/>
+      {/* <ShopByCategory /> */}
+      {/* <AstrologyRemedies /> */}
+      
+      <RecommendedPujaSection/>
+      <ChadhawaSection/>
       <ShopByCollection />
-      <PersonalizedRecommendations />
-      <MediaInNews />
+      {/* <PersonalizedRecommendations /> */}
+      {/* <MediaInNews /> */}
       <CustomerReviews />
+      <InsightsSection/>
       {/* <SpiritualBlog /> */}
       {/* <BlogsSection /> */}
       <LatestTrending />
