@@ -49,7 +49,7 @@ const featuresList = [
 
 function FeaturesGridSection() {
   return (
-    <section className="w-full bg-[#fff3df] py-20 px-4 md:px-10 overflow-hidden relative">
+    <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-20 px-4 md:px-10 overflow-hidden relative">
       
       {/* Section Header */}
       <div className="max-w-[1200px] mx-auto text-center mb-14">

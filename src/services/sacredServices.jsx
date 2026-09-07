@@ -57,7 +57,7 @@ const sacredServices = [
 
 function SacredServicesSection() {
   return (
-    <section className="w-full bg-[#fff3df] py-16 px-4 md:px-10">
+    <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  py-16 px-4 md:px-10">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Heading Header */}

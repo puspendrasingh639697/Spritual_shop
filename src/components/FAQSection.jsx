@@ -45,7 +45,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-[#fff3df] border-y border-[#edd5b9]">
+    <section className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] border-y border-[#edd5b9]">
       <div className="max-w-[1000px] mx-auto">
         
         {/* Section Heading */}

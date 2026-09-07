@@ -344,7 +344,7 @@ function Navbar() {
     };
 
     return (
-        <header className="w-full bg-[#f6eee3] shadow-md border-b border-amber-900/10">
+        <header className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] shadow-md border-b border-amber-900/10">
             {/* Main Header Container */}
             <div className="w-full px-4 md:px-10 py-3">
                 <div className="max-w-7xl mx-auto">

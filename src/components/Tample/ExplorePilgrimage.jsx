@@ -198,7 +198,7 @@ function ExplorePilgrimage() {
   const infiniteSites = [...pilgrimageSites, ...pilgrimageSites];
 
   return (
-    <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-12 px-4 md:px-10 relative overflow-hidden font-sans">
+    <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-12 px-4 md:px-10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section (UI untouched as requested) */}
@@ -224,7 +224,7 @@ function ExplorePilgrimage() {
                 to={site.href}
                 className="flex-none w-[270px] sm:w-[290px] md:w-[300px] group/card cursor-pointer"
               >
-                <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  rounded-md overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-amber-900/10">
+                <div className="bg-gradient-to-r from-[#df972b] to-[#c27803]  rounded-md overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-amber-900/10">
                   <div className="w-full h-[210px] overflow-hidden bg-gray-50 flex items-center justify-center p-3">
                     <img
                       src={site.image}
@@ -233,7 +233,7 @@ function ExplorePilgrimage() {
                     />
                   </div>
                   <div className="py-4 px-3 text-center">
-                    <h3 className="text-base md:text-lg  text-[#4a2e18] tracking-wide">
+                    <h3 className="text-base md:text-lg  text-black tracking-wide">
                       {site.title}
                     </h3>
                   </div>

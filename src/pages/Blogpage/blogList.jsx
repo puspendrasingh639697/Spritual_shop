@@ -220,7 +220,7 @@ function InsightsSection() {
               </div>
 
               {/* Premium Content Section */}
-              <div className="p-7 flex flex-col flex-grow bg-[#fff3df] backdrop-blur-sm">
+              <div className="p-7 flex flex-col flex-grow bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] backdrop-blur-sm">
                 <div className="flex-grow">
                   <h3 className=" text-[#1a0d00] text-xl leading-snug mb-3 group-hover:text-[#df972b] transition-colors duration-300 line-clamp-2">
                     {blog.title}
