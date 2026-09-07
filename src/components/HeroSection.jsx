@@ -81,9 +81,7 @@ function HeroSection() {
         
         {/* Left Content */}
         <div className="flex flex-col items-start text-left z-10 space-y-5">
-          <span className="text-white font-bold text-xs md:text-sm tracking-widest  bg-[#df972b] px-3.5 py-1.5 rounded-md">
-            PREDICTION SE PUJA TAK
-          </span>
+         
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#4a2e18] leading-[1.15]">
             Unlock The <span className="text-[#df972b]">Power Of Divine Blessings</span>
           </h1>
