@@ -92,13 +92,13 @@ function HeroSection() {
           </p>
           <div className="pt-2 flex items-center gap-4">
             <Link 
-              to="/book-pandit-ji" 
+              to="/pandit-booking" 
               className="bg-[#df972b] hover:bg-[#c27803] text-white font-bold px-7 py-3 rounded-md shadow-md transition-all duration-300 text-sm md:text-base"
             >
               Book Pandit Ji
             </Link>
             <Link 
-              to="/puja" 
+              to="/pooja-booking" 
               className="border-2 border-[#4a2e18] text-[#4a2e18] hover:bg-[#4a2e18] hover:text-white font-bold px-7 py-3 rounded-md transition-all duration-300 text-sm md:text-base"
             >
               Explore Pujas
