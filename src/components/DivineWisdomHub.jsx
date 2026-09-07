@@ -62,14 +62,7 @@ const CleanFeatureSection = () => {
 
       </div>
 
-      {/* Edge-to-Edge Fluid Banner matching reference screenshot style */}
-      <div className="w-full overflow-hidden bg-white border-y border-[#edd5b9]">
-        <img 
-          src={bannerImage} 
-          alt="Authentic Community Banner" 
-          className="w-full h-[150px] sm:h-[230px] md:h-[290px] lg:h-[350px] object-cover block"
-        />
-      </div>
+     
     </section>
   );
 };
