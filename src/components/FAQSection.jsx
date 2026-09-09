@@ -45,12 +45,12 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] border-y border-[#edd5b9]">
-      <div className="max-w-[1000px] mx-auto">
+    <section className="w-full py-4 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] border-y border-[#edd5b9]">
+      <div className="max-w-[900px] mx-auto">
         
         {/* Section Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-serif font-normal text-[#4a2e18] tracking-wide">
+          <h2 className="text-3xl sm:text-4xl  font-normal text-[#4a2e18] tracking-wide">
             Frequently Asked Questions
           </h2>
           <div className="w-24 h-0.5 bg-[#d35400]/30 mx-auto mt-4"></div>
@@ -63,22 +63,22 @@ const FAQSection = () => {
             return (
               <div 
                 key={index}
-                className="bg-gradient-to-r from-[#df972b] border border-[#edd5b9] rounded-xl shadow-sm transition-all duration-300 overflow-hidden"
+                className="bg-gradient-to-r from-[#df972b] to-[#c27803]  border border-[#edd5b9] rounded-xl shadow-sm transition-all duration-300 overflow-hidden"
               >
                 {/* Question Header */}
                 <button
                   onClick={() => toggleFAQ(index)}
                   className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none group cursor-pointer"
                 >
-                  <span className=" font-medium text-[#4a2e18] text-base sm:text-lg group-hover:text-[#d35400] transition-colors pr-4">
+                  <span className=" font-medium text-white text-base sm:text-lg group-hover:text-black transition-colors pr-4">
                     {faq.question}
                   </span>
                   
                   {/* Plus / Minus Icon Container */}
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${
+                  <div className={`w-8 h-8 rounded-md flex items-center justify-center border transition-all duration-300 shrink-0 ${
                     isOpen 
-                      ? "bg-[#fff3df] border-[#d35400] text-[#d35400] rotate-180" 
-                      : "bg-[#fdfaf6] border-[#edd5b9] text-[#4a2e18] group-hover:border-[#d35400]"
+                      ? " border-[#d35400] text-[#d35400] rotate-180" 
+                      : " border-[#edd5b9] text-[#4a2e18] group-hover:border-[#d35400]"
                   }`}>
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
@@ -88,7 +88,7 @@ const FAQSection = () => {
                 <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
                   isOpen ? "max-h-96 opacity-100 pb-6 px-6" : "max-h-0 opacity-0 px-6"
                 }`}>
-                  <div className="border-t border-[#edd5b9]/50 pt-4 text-gray-600 text-sm sm:text-base leading-relaxed">
+                  <div className="border-t border-[#edd5b9]/50 pt-4 text-white text-sm sm:text-base leading-relaxed">
                     {faq.answer}
                   </div>
                 </div>
@@ -103,3 +103,5 @@ const FAQSection = () => {
 };
 
 export default FAQSection;
+
+

@@ -36,7 +36,7 @@ const CleanFeatureSection = () => {
   ];
 
   return (
-    <section className="w-full py-16 bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  border-y border-[#edd5b9]">
+    <section className="w-full py-4 bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] ">
       <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 4 Items Layout */}

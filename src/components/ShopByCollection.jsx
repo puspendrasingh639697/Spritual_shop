@@ -340,7 +340,7 @@ const ShopByCollection = () => {
   const [activeTab, setActiveTab] = useState("Best Sellers");
 
   return (
-    <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  py-16 px-4 overflow-hidden border-y border-[#edd5b9]">
+    <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  py-16 px-4 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl  text-[#4a2e18] tracking-wide inline-block font-semibold">

@@ -198,7 +198,7 @@ function ExplorePilgrimage() {
   const infiniteSites = [...pilgrimageSites, ...pilgrimageSites];
 
   return (
-    <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-12 px-4 md:px-10 relative overflow-hidden">
+    <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  md:px-10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section (UI untouched as requested) */}
@@ -211,7 +211,7 @@ function ExplorePilgrimage() {
           </p>
         </div>
 
-        {/* Infinite Continuous Scrolling Track (Arrows removed for auto-scroll loop) */}
+      {/* Infinite Continuous Scrolling Track */}
         <div className="relative mb-14 px-2 md:px-6">
           <div
             ref={scrollRef}
@@ -224,7 +224,7 @@ function ExplorePilgrimage() {
                 to={site.href}
                 className="flex-none w-[270px] sm:w-[290px] md:w-[300px] group/card cursor-pointer"
               >
-                <div className="bg-gradient-to-r from-[#df972b] to-[#c27803]  rounded-md overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-amber-900/10">
+                <div className="bg-white rounded-md overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-amber-900/10">
                   <div className="w-full h-[210px] overflow-hidden bg-gray-50 flex items-center justify-center p-3">
                     <img
                       src={site.image}
@@ -232,8 +232,9 @@ function ExplorePilgrimage() {
                       className="w-full h-full object-contain object-center group-hover/card:scale-105 transition-transform duration-500"
                     />
                   </div>
-                  <div className="py-4 px-3 text-center">
-                    <h3 className="text-base md:text-lg  text-black tracking-wide">
+                  {/* डिफ़ॉल्ट नारंगी बैकग्राउंड और सफेद टेक्स्ट, होवर पर हल्का बैकग्राउंड और काला टेक्स्ट */}
+                  <div className="py-4 px-3 text-center transition-all duration-300 bg-gradient-to-r from-[#df972b] to-[#c27803] group-hover/card:bg-gradient-to-r group-hover/card:from-white group-hover/card:via-[#fff7ed] group-hover/card:to-[#fff3df]">
+                    <h3 className="text-base md:text-lg text-white group-hover/card:text-black tracking-wide transition-colors duration-300">
                       {site.title}
                     </h3>
                   </div>
@@ -242,7 +243,6 @@ function ExplorePilgrimage() {
             ))}
           </div>
         </div>
-
         {/* Bottom Banner Section (UI untouched) */}
         <div className="relative rounded-2xl overflow-hidden shadow-xl bg-[#4a2311] text-white min-h-[160px] md:min-h-[170px] flex items-center">
           <div className="absolute inset-0 z-0">
@@ -263,12 +263,7 @@ function ExplorePilgrimage() {
                 Kashi Vishwanath <span className="text-[#df972b]">&</span> Ayodhya
               </h3>
             </div>
-            <Link
-              to="/temples/kashi-ayodhya-tour"
-              className="inline-flex items-center gap-2 bg-[#df972b] hover:bg-[#c27803] text-white font-semibold px-6 py-2.5 rounded-full text-sm md:text-base transition-all duration-300 shadow-md"
-            >
-              <span>Book Now!</span>
-            </Link>
+            
           </div>
         </div>
 
