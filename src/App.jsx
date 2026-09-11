@@ -43,6 +43,8 @@ import PanditPackage from "./components/PanditBooking/PanditPackage";
 import PanditForm from "./components/PanditBooking/PanditForm";
 import PopularChadhavaSection from "./components/Chadhawa/ChadhawaHomepage";
 import Chadhawa from "./components/Chadhawa/Chadhawa";
+import PoojaDetailPage from "./components/BookEPuja/PoojaDetailsSection";
+import EPoojaBookingpage from "./components/BookEPuja/EPoojaBookingpage";
 
 // ✅ YEH NAYA COMPONENT ADD KIYA HAI (Already Logged In User ko Login page se redirect karega)
 const RedirectIfLoggedIn = ({ children }) => {
@@ -103,6 +105,9 @@ function MainLayout() {
           <Route path="/blogs" element={<SpiritualBlog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/pooja-booking" element={<BookPuja />} />
+          <Route path="/pooja/:id" element={<PoojaDetailPage />} />
+          <Route path="/pooja-booking/:id" element={<EPoojaBookingpage />} />
+
           <Route path="/pandit-booking" element={<PanditBookingPage />} />
           <Route path="/pandit-package/:id" element={<PanditPackage />} />
 

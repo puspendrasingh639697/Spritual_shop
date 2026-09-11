@@ -1,18 +1,12 @@
-import React, { useState, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const PoojaDetailsSection = ({
   poojaDetails,
   poojaDetailsRef,
-  formData,
-  setFormData,
   handleSubmit,
 }) => {
-  const tabs = ["Description", "Significance", "Ingredients", "Procedure"];
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
-
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [isNameModalOpen, setIsNameModalOpen] = useState(false);
   const [memberNames, setMemberNames] = useState([]);
@@ -25,28 +19,8 @@ const PoojaDetailsSection = ({
 
   const addName = () => {
     if (nameInput.trim() === "") return;
-
-    let maxNames = 1;
-    const title = selectedPackage?.poojaPackages?.title;
-
-    if (title === "Couple") maxNames = 2;
-    else if (title === "Family") maxNames = 6;
-
-    if (memberNames.length >= maxNames) {
-      toast.error(
-        `You can add up to ${maxNames} name${maxNames > 1 ? "s" : ""} only.`
-      );
-      return;
-    }
-
     setMemberNames([...memberNames, nameInput.trim()]);
     setNameInput("");
-  };
-
-  const isMaxReached = () => {
-    const title = selectedPackage?.poojaPackages?.title;
-    const limits = { Single: 1, Couple: 2, Family: 6 };
-    return memberNames.length >= (limits[title] || 1);
   };
 
   const removeName = (nameToRemove) => {
@@ -55,179 +29,69 @@ const PoojaDetailsSection = ({
 
   const onSubmitNames = () => {
     setIsNameModalOpen(false);
-    handleSubmit(selectedPackage._id, memberNames);
+    handleSubmit(selectedPackage?._id, memberNames);
     setMemberNames([]);
-  };
-
-  const packagesRef = useRef(null);
-
-  const sortedOnlinePackages = poojaDetails?.packages
-    ?.filter((obj) => obj?.poojaPackages?.typeOfPackage === "onlinepooja")
-    ?.sort((a, b) => {
-      const order = ["Single", "Couple", "Family"];
-      const titleA = a?.poojaPackages?.title || "";
-      const titleB = b?.poojaPackages?.title || "";
-      return order.indexOf(titleA) - order.indexOf(titleB);
-    });
-
-  const handleNext = () => {
-    if (activeTabIndex < tabs.length - 1) setActiveTabIndex(activeTabIndex + 1);
-  };
-
-  const handlePrev = () => {
-    if (activeTabIndex > 0) setActiveTabIndex(activeTabIndex - 1);
-  };
-
-  const renderContent = () => {
-    switch (tabs[activeTabIndex]) {
-      case "Description":
-        return (
-          <ContentCard
-            title="Description"
-            content={poojaDetails.description}
-            image={poojaDetails.images?.[0]?.imageUrl}
-          />
-        );
-      case "Significance":
-        return (
-          <ContentCard
-            title="Significance"
-            content={poojaDetails.significance}
-            image={poojaDetails.images?.[1]?.imageUrl}
-          />
-        );
-      case "Ingredients":
-        return (
-          <ContentCard
-            title="Ingredients Required"
-            content={poojaDetails.ingredients
-              ?.map((item) => `• ${item}`)
-              .join("\n")}
-            image={poojaDetails.images?.[2]?.imageUrl}
-          />
-        );
-      case "Procedure":
-        return (
-          <ContentCard
-            title="Procedure"
-            content={poojaDetails.procedure}
-            image={poojaDetails.images?.[3]?.imageUrl}
-          />
-        );
-      default:
-        return null;
-    }
   };
 
   return (
     <div
       ref={poojaDetailsRef}
-      className="mt-8 p-4 bg-white rounded-2xl shadow-xl"
+      className="mt-8 p-6 bg-white rounded-2xl shadow-xl max-w-4xl mx-auto"
       id="pooja-details"
     >
       {poojaDetails ? (
-        <>
-          <h2 className="text-2xl font-bold text-red-800 mb-6 text-center">
-            {poojaDetails.poojaName}
+        <div>
+          {/* Puja Title */}
+          <h2 className="text-3xl font-bold text-red-800 mb-4 text-center">
+            {poojaDetails.PujaName}
           </h2>
 
-          {/* Tabs */}
-          <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
-            <button
-              onClick={handlePrev}
-              disabled={activeTabIndex === 0}
-              className="text-red-800 disabled:opacity-30 cursor-pointer"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            <div className="flex flex-wrap gap-4 justify-center flex-1">
-              {tabs.map((tab, index) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTabIndex(index)}
-                  className={`px-4 py-2 text-sm font-medium transition border-b-2 cursor-pointer ${
-                    activeTabIndex === index
-                      ? "border-red-800 text-red-800 font-semibold"
-                      : "border-transparent text-gray-600"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
+          {/* Image & Basic Details */}
+          <div className="flex flex-col md:flex-row gap-6 items-center mb-6">
+            {poojaDetails.image && (
+              <img
+                src={poojaDetails.image}
+                alt={poojaDetails.PujaName}
+                className="w-full md:w-72 h-52 object-cover rounded-xl shadow-md"
+              />
+            )}
+            <div className="flex-1 space-y-2 text-gray-700">
+              <p className="text-lg">
+                <strong>Temple:</strong> {poojaDetails.templeName}
+              </p>
+              <p className="text-lg">
+                <strong>Location:</strong> {poojaDetails.location}
+              </p>
+              <p className="text-xl font-semibold text-red-800">
+                Price: ₹ {poojaDetails.price}
+              </p>
+              <p className="text-sm text-gray-600 leading-relaxed pt-2">
+                {poojaDetails.description}
+              </p>
             </div>
-
-            <button
-              onClick={handleNext}
-              disabled={activeTabIndex === tabs.length - 1}
-              className="text-red-800 disabled:opacity-30 cursor-pointer"
-            >
-              <ChevronRight size={24} />
-            </button>
           </div>
 
-          {/* Tab Content */}
-          {renderContent()}
-
-          {/* Packages Section */}
-          {poojaDetails?.packages && poojaDetails.packages.length > 0 && (
-            <div className="mt-10" ref={packagesRef}>
-              <h3 className="text-2xl font-bold text-black text-center border-t-2 pt-4">
-                <span className="text-black">Puja</span> Packages
-              </h3>
-              <p className="text-center mb-6 text-gray-600 font-normal text-sm">
-                Please click on package to select
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t-2 pt-4">
-                {sortedOnlinePackages?.map((pkg, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col justify-between gap-4 bg-white shadow-md rounded-xl p-6 border-b-4 border-red-800 hover:shadow-lg transition-all"
-                  >
-                    <div>
-                      <h4 className="text-2xl text-center font-bold text-gray-800 mb-2">
-                        {pkg?.poojaPackages?.title}
-                      </h4>
-                      <p className="text-center font-semibold text-xl text-red-800 mb-2">
-                        ₹ {pkg?.poojaPackages?.price}
-                      </p>
-                      <p className="text-center text-sm text-gray-500 mb-2">
-                        {pkg?.poojaPackages?.title === "Single"
-                          ? `For ${pkg?.poojaPackages?.NoPepoles} Person`
-                          : `Upto ${pkg?.poojaPackages?.NoPepoles} Persons`}
-                      </p>
-                      <p className="text-sm text-gray-600  text-center mb-2">
-                        {pkg?.poojaPackages?.subtitle}
-                      </p>
-                      <p className="text-gray-700 mb-4 whitespace-pre-line text-center text-sm">
-                        {pkg?.poojaPackages?.CustomDescription}
-                      </p>
-                    </div>
-
-                    <button
-                      className="rounded-md w-full bg-red-800 hover:bg-red-800 text-white font-medium py-2 transition cursor-pointer"
-                      type="button"
-                      onClick={() => onConfirmClick(pkg)}
-                    >
-                      Confirm Package
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </>
+          {/* Simple Booking / Action Button */}
+          <div className="border-t pt-6 text-center">
+            <button
+              className="rounded-xl bg-red-800 hover:bg-red-900 text-white font-medium px-8 py-3 transition cursor-pointer shadow-md"
+              type="button"
+              onClick={() => onConfirmClick(poojaDetails)}
+            >
+              Book This Puja
+            </button>
+          </div>
+        </div>
       ) : (
         <p className="text-gray-500 text-center">Select a pooja to see the details.</p>
       )}
 
-      {/* Modal for Names */}
+      {/* Modal for Member Names */}
       {isNameModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl">
             <h2 className="text-xl font-bold mb-4 text-center text-gray-800">
-              Enter Member Names ({selectedPackage?.poojaPackages?.title})
+              Enter Member Names
             </h2>
 
             <div className="flex gap-2 mb-4">
@@ -236,13 +100,11 @@ const PoojaDetailsSection = ({
                 value={nameInput}
                 onChange={(e) => setNameInput(e.target.value)}
                 placeholder="Enter member name"
-                disabled={isMaxReached()}
                 className="flex-1 border-2 border-gray-200 px-3 py-2 rounded-xl focus:outline-none focus:border-red-800"
               />
               <button
                 onClick={addName}
-                disabled={isMaxReached()}
-                className="bg-red-800 hover:bg-red-800 text-white px-4 py-2 rounded-xl font-medium transition cursor-pointer disabled:opacity-50"
+                className="bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-xl font-medium transition cursor-pointer"
               >
                 Add
               </button>
@@ -252,11 +114,11 @@ const PoojaDetailsSection = ({
               {memberNames.map((name, i) => (
                 <div
                   key={i}
-                  className="bg-red-800 text-gray-800 text-sm px-3 py-1.5 rounded-full flex items-center gap-2"
+                  className="bg-red-100 text-red-800 text-sm px-3 py-1.5 rounded-full flex items-center gap-2"
                 >
                   <span>{name}</span>
                   <button
-                    className="text-red-500 font-bold hover:text-red-700 cursor-pointer"
+                    className="text-red-600 font-bold hover:text-red-800 cursor-pointer"
                     onClick={() => removeName(name)}
                   >
                     ✕
@@ -276,7 +138,7 @@ const PoojaDetailsSection = ({
                 Cancel
               </button>
               <button
-                className="bg-red-800 hover:bg-red-800 text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer"
+                className="bg-red-800 hover:bg-red-900 text-white px-5 py-2 rounded-xl font-medium transition cursor-pointer"
                 onClick={onSubmitNames}
               >
                 Submit
@@ -288,21 +150,5 @@ const PoojaDetailsSection = ({
     </div>
   );
 };
-
-const ContentCard = ({ title, content, image }) => (
-  <div className="mb-6 p-4 rounded-xl shadow border border-gray-100 flex flex-col md:flex-row items-center gap-6">
-    <div className="flex-1">
-      <h3 className="text-lg font-semibold text-red-800 mb-2">{title}:</h3>
-      <p className="text-gray-700 whitespace-pre-line leading-relaxed">{content}</p>
-    </div>
-    {image && (
-      <img
-        src={image}
-        alt={title}
-        className="w-full md:w-56 h-48 object-cover rounded-xl shadow-md"
-      />
-    )}
-  </div>
-);
 
 export default PoojaDetailsSection;
