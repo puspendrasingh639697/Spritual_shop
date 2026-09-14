@@ -1,134 +1,351 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { BiChevronLeft, BiChevronRight, BiCalendar, BiMapPin } from "react-icons/bi";
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import { BiCalendar, BiMapPin } from "react-icons/bi";
+// import { FaGift, FaStar } from "react-icons/fa";
 
-const popularChadhavas = [
+// /* ================= IMAGE IMPORTS ================= */
+// import coins from "../../assets/TampleImage/coines.webp";
+// import tample18 from "../../assets/TampleImage/tample18.png";
+// import pojaKit2 from "../../assets/pojakit_2.jpg";
+
+// /* ================= CHADHAWA DATA — 6 Cards ================= */
+// const popularChadhavas = [
+//     {
+//         id: 1,
+//         title: "Baglamukhi Sankat-Naashak Mirchi Havan",
+//         subtitle: "Complete freedom from crises, fear, and opponents",
+//         temple: "Maa Baglamukhi Dham, Ujjain",
+//         date: "Thu, 3 Sep 2026",
+//         price: 501,
+//         rating: "4.8",
+//         image: coins,
+//         link: "/chadhawa/1",
+//     },
+//     {
+//         id: 2,
+//         title: "Shiv-Parvati Prem Prapti Chadhava",
+//         subtitle: "An opportunity to attain love, prosperity, and marital bliss",
+//         temple: "Triyugi Narayan Teerth, Rudraprayag",
+//         date: "Fri, 4 Sep 2026",
+//         price: 751,
+//         rating: "4.9",
+//         image: tample18,
+//         link: "/chadhawa/2",
+//     },
+//     {
+//         id: 3,
+//         title: "Shri Khatu Shyam Chadhava",
+//         subtitle: "Success in Business and Career",
+//         temple: "Khatu Shyam Temple, Sikar",
+//         date: "Sun, 6 Sep 2026",
+//         price: 1100,
+//         rating: "4.7",
+//         image: pojaKit2,
+//         link: "/chadhawa/3",
+//     },
+//     {
+//         id: 4,
+//         title: "Maha Rudrabhishek Chadhava",
+//         subtitle: "Remove obstacles and invite abundance",
+//         temple: "Kashi Vishwanath Temple, Varanasi",
+//         date: "Mon, 7 Sep 2026",
+//         price: 851,
+//         rating: "4.9",
+//         image: coins,
+//         link: "/chadhawa/4",
+//     },
+//     {
+//         id: 5,
+//         title: "Ganesh Lakshmi Maha Anushthan",
+//         subtitle: "Wealth, prosperity, and divine blessings",
+//         temple: "Siddhivinayak Temple, Mumbai",
+//         date: "Tue, 8 Sep 2026",
+//         price: 651,
+//         rating: "4.8",
+//         image: tample18,
+//         link: "/chadhawa/5",
+//     },
+//     {
+//         id: 6,
+//         title: "Kaal Sarp Dosh Nivaran Chadhava",
+//         subtitle: "Pacify planetary afflictions and bring peace",
+//         temple: "Trimbakeshwar Temple, Nashik",
+//         date: "Wed, 9 Sep 2026",
+//         price: 1501,
+//         rating: "4.7",
+//         image: pojaKit2,
+//         link: "/chadhawa/6",
+//     },
+// ];
+
+// function PopularChadhavaSection() {
+//     return (
+//         <section className="w-full py-6 md:py-6 px-2 md:px-8 bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  relative overflow-hidden">
+//             {/* Ambient Glow */}
+//             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-r from-[#df972b]/10 to-[#c27803]/10 rounded-full blur-3xl pointer-events-none"></div>
+//             <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-r from-[#df972b]/10 to-[#c27803]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+//             <div className="max-w-7xl mx-auto relative z-10">
+//                 {/* ================= SECTION HEADER ================= */}
+//                 <div className="text-center mb-10">
+                    
+//                     <h2 className="text-2xl md:text-4xl font-serif font-bold text-[#7a1c1c] mb-2">
+//                         Most Popular Chadhava
+//                     </h2>
+//                     <div className="w-24 h-1 bg-gradient-to-r from-[#df972b] to-[#c27803] rounded-full mx-auto mb-3"></div>
+                    
+//                 </div>
+
+//                 {/* ================= 6 CARDS GRID ================= */}
+//                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//                     {popularChadhavas.map((item) => (
+//                         <div
+//                             key={item.id}
+//                             className="group bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] rounded-md overflow-hidden shadow-md hover:shadow-2xl border border-amber-200/50 transition-all duration-500 flex flex-col justify-between hover:-translate-y-2"
+//                         >
+//                             <div>
+//                                 {/* Card Image */}
+//                                 <div className="relative h-56 w-full overflow-hidden">
+//                                     <img
+//                                         src={item.image}
+//                                         alt={item.title}
+//                                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+//                                     />
+//                                     {/* Gradient Overlay */}
+//                                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
+
+//                                     {/* Rating Badge */}
+//                                     <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-md shadow-md flex items-center gap-1">
+//                                         <span className="text-xs font-bold text-[#7a1c1c]">
+//                                             {item.rating}
+//                                         </span>
+//                                         <FaStar className="text-[#df972b] text-[10px]" />
+//                                     </div>
+
+//                                     {/* Price Badge */}
+//                                     <div className="absolute top-3 left-3 bg-gradient-to-r from-[#df972b] to-[#c27803] text-white text-[11px] font-bold px-3 py-1 rounded-md shadow-md">
+//                                         ₹{item.price}
+//                                     </div>
+
+//                                     {/* Title Overlay */}
+//                                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+//                                         <h3 className="text-base md:text-lg font-bold leading-snug line-clamp-2 drop-shadow-md">
+//                                             {item.title}
+//                                         </h3>
+//                                     </div>
+//                                 </div>
+
+//                                 {/* Card Body */}
+//                                 <div className="p-4 space-y-3">
+//                                     {/* Subtitle */}
+//                                     <p className="text-xs text-black line-clamp-2 leading-relaxed">
+//                                         {item.subtitle}
+//                                     </p>
+
+//                                     {/* Date + Temple */}
+//                                     <div className="flex items-center gap-2 text-[11px] text-black font-medium flex-wrap">
+//                                         <div className="flex items-center gap-1">
+//                                             <BiCalendar className="text-black text-xs" />
+//                                             <span>{item.date}</span>
+//                                         </div>
+//                                         <span className="text-black">•</span>
+//                                         <div className="flex items-center gap-1 min-w-0">
+//                                             <BiMapPin className="text-[#c27803] text-xs shrink-0" />
+//                                             <span className="truncate max-w-[140px]">
+//                                                 {item.temple}
+//                                             </span>
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                             </div>
+
+//                             {/* Action Button */}
+//                             <div className="p-4 pt-0">
+//                                 <Link
+//                                     to={item.link}
+//                                     className="block w-full bg-gradient-to-r from-[#df972b] to-[#c27803] hover:from-[#c27803] hover:to-[#c27803] text-white font-bold py-2 px-3 rounded-md text-center text-sm shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.98]"
+//                                 >
+//                                     Offer Chadhawa
+//                                 </Link>
+//                             </div>
+//                         </div>
+//                     ))}
+//                 </div>
+
+               
+//             </div>
+//         </section>
+//     );
+// }
+
+// export default PopularChadhavaSection;
+
+
+import React from "react";
+import { Link } from "react-router-dom";
+import { BiCalendar, BiMapPin } from "react-icons/bi";
+import { FaGift, FaStar } from "react-icons/fa";
+
+/* ================= IMAGE IMPORTS ================= */
+import coins from "../../assets/TampleImage/coines.webp";
+import tample18 from "../../assets/TampleImage/tample18.png";
+import pojaKit2 from "../../assets/pojakit_2.jpg";
+
+/* ================= CHADHAWA DATA — EXPORTED ================= */
+export const chadhawaList = [
     {
         id: 1,
         title: "Baglamukhi Sankat-Naashak Mirchi Havan",
         subtitle: "Complete freedom from crises, fear, and opponents",
         temple: "Maa Baglamukhi Dham, Ujjain",
-        date: "Thu, 3 September 2026",
-        image: "https://images.unsplash.com/photo-1609137144850-42940bc18c92?q=80&w=600&auto=format&fit=crop",
-        link: "/chadhawa-details/baglamukhi-sankat-naashak-mirchi-havan"
+        date: "Thu, 3 Sep 2026",
+        chadhawaDate: "2026-09-20T10:00:00",
+        price: 501,
+        rating: "4.8",
+        image: coins,
+        link: "/chadhawa/1",
     },
     {
         id: 2,
         title: "Shiv-Parvati Prem Prapti Chadhava",
         subtitle: "An opportunity to attain love, prosperity, and marital bliss",
         temple: "Triyugi Narayan Teerth, Rudraprayag",
-        date: "Fri, 4 September 2026",
-        image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=600&auto=format&fit=crop",
-        link: "/chadhawa-details/shiv-parvati-prem-prapti-chadhava"
+        date: "Fri, 4 Sep 2026",
+        chadhawaDate: "2026-09-18T08:00:00",
+        price: 751,
+        rating: "4.9",
+        image: tample18,
+        link: "/chadhawa/2",
     },
     {
         id: 3,
         title: "Shri Khatu Shyam Chadhava",
         subtitle: "Success in Business and Career",
         temple: "Khatu Shyam Temple, Sikar",
-        date: "Sun, 6 September 2026",
-        image: "https://images.unsplash.com/photo-1621847468516-1ed5d0df56fe?q=80&w=600&auto=format&fit=crop",
-        link: "/chadhawa-details/shri-khatu-shyam-chadhava"
-    }
+        date: "Sun, 6 Sep 2026",
+        chadhawaDate: "2026-09-15T06:00:00",
+        price: 1100,
+        rating: "4.7",
+        image: pojaKit2,
+        link: "/chadhawa/3",
+    },
+    {
+        id: 4,
+        title: "Maha Rudrabhishek Chadhava",
+        subtitle: "Remove obstacles and invite abundance",
+        temple: "Kashi Vishwanath Temple, Varanasi",
+        date: "Mon, 7 Sep 2026",
+        chadhawaDate: "2026-09-22T05:00:00",
+        price: 851,
+        rating: "4.9",
+        image: coins,
+        link: "/chadhawa/4",
+    },
+    {
+        id: 5,
+        title: "Ganesh Lakshmi Maha Anushthan",
+        subtitle: "Wealth, prosperity, and divine blessings",
+        temple: "Siddhivinayak Temple, Mumbai",
+        date: "Tue, 8 Sep 2026",
+        chadhawaDate: "2026-09-25T07:00:00",
+        price: 651,
+        rating: "4.8",
+        image: tample18,
+        link: "/chadhawa/5",
+    },
+    {
+        id: 6,
+        title: "Kaal Sarp Dosh Nivaran Chadhava",
+        subtitle: "Pacify planetary afflictions and bring peace",
+        temple: "Trimbakeshwar Temple, Nashik",
+        date: "Wed, 9 Sep 2026",
+        chadhawaDate: "2026-09-28T09:00:00",
+        price: 1501,
+        rating: "4.7",
+        image: pojaKit2,
+        link: "/chadhawa/6",
+    },
 ];
 
 function PopularChadhavaSection() {
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    const handlePrev = () => {
-        setCurrentIndex((prev) => (prev === 0 ? popularChadhavas.length - 1 : prev - 1));
-    };
-
-    const handleNext = () => {
-        setCurrentIndex((prev) => (prev === popularChadhavas.length - 1 ? 0 : prev + 1));
-    };
-
     return (
-        <section className="w-full py-12 px-4 md:px-12 bg-gradient-to-b from-[#f99d1c] to-[#f47c12] relative overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-                
-                {/* Section Header */}
-                <div className="flex items-center justify-center gap-4 mb-8">
-                    <div className="h-[1px] w-12 md:w-24 bg-white/60"></div>
-                    <h2 className="text-xl md:text-2xl font-extrabold tracking-wider text-white uppercase text-center drop-shadow-sm">
-                        MOST POPULAR CHADJAVA
+        <section className="w-full py-6 md:py-6 px-2 md:px-8 bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-r from-[#df972b]/10 to-[#c27803]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-r from-[#df972b]/10 to-[#c27803]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="text-center mb-10">
+                    <h2 className="text-2xl md:text-4xl font-serif font-bold text-[#7a1c1c] mb-2">
+                        Most Popular Chadhava
                     </h2>
-                    <div className="h-[1px] w-12 md:w-24 bg-white/60"></div>
+                    <div className="w-24 h-1 bg-gradient-to-r from-[#df972b] to-[#c27803] rounded-full mx-auto mb-3"></div>
                 </div>
 
-                {/* Slider Container with Navigation Arrows */}
-                <div className="relative px-2 md:px-10">
-                    
-                    {/* Left Arrow */}
-                    <button 
-                        onClick={handlePrev}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-100 text-gray-800 p-2.5 rounded-full shadow-lg transition-transform hover:scale-105 hidden md:flex items-center justify-center cursor-pointer"
-                    >
-                        <BiChevronLeft className="text-2xl" />
-                    </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {chadhawaList.map((item) => (
+                        <div
+                            key={item.id}
+                            className="group bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] rounded-md overflow-hidden shadow-md hover:shadow-2xl border border-amber-200/50 transition-all duration-500 flex flex-col justify-between hover:-translate-y-2"
+                        >
+                            <div>
+                                <div className="relative h-56 w-full overflow-hidden">
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
 
-                    {/* Cards Grid / Carousel */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {popularChadhavas.map((item) => (
-                            <div 
-                                key={item.id} 
-                                className="bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between border border-white/40 transition-all duration-300 hover:shadow-3xl"
-                            >
-                                <div>
-                                    {/* Card Image with Top Overlay Content */}
-                                    <div className="relative h-56 w-full overflow-hidden">
-                                        <img 
-                                            src={item.image} 
-                                            alt={item.title} 
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 flex flex-col justify-end text-white text-center">
-                                            <h3 className="text-base md:text-lg font-bold leading-snug drop-shadow">
-                                                {item.title}
-                                            </h3>
-                                            <p className="text-xs text-gray-200 mt-1 line-clamp-1 opacity-90">
-                                                {item.subtitle}
-                                            </p>
-                                        </div>
+                                    <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-md shadow-md flex items-center gap-1">
+                                        <span className="text-xs font-bold text-[#7a1c1c]">
+                                            {item.rating}
+                                        </span>
+                                        <FaStar className="text-[#df972b] text-[10px]" />
                                     </div>
 
-                                    {/* Card Details */}
-                                    <div className="p-4 space-y-2 text-center">
-                                        <h4 className="text-sm font-bold text-gray-900 truncate">
+                                    <div className="absolute top-3 left-3 bg-gradient-to-r from-[#df972b] to-[#c27803] text-white text-[11px] font-bold px-3 py-1 rounded-md shadow-md">
+                                        ₹{item.price}
+                                    </div>
+
+                                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                                        <h3 className="text-base md:text-lg font-bold leading-snug line-clamp-2 drop-shadow-md">
                                             {item.title}
-                                        </h4>
-                                        <div className="flex items-center justify-center gap-1.5 text-xs text-gray-600 font-medium">
-                                            <BiCalendar className="text-purple-700 text-sm shrink-0" />
-                                            <span>{item.date}</span>
-                                            <span>·</span>
-                                            <span className="truncate max-w-[160px]">{item.temple}</span>
-                                        </div>
+                                        </h3>
                                     </div>
                                 </div>
 
-                                {/* Action Button */}
-                                <div className="p-4 pt-0">
-                                    <Link 
-                                        to={item.link}
-                                        className="block w-full bg-red-800 hover:bg-[#5e0c6a] text-white font-bold py-3 px-4 rounded-xl text-center text-sm shadow-md transition-colors duration-200"
-                                    >
-                                        Offer Chadhawa
-                                    </Link>
+                                <div className="p-4 space-y-3">
+                                    <p className="text-xs text-black line-clamp-2 leading-relaxed">
+                                        {item.subtitle}
+                                    </p>
+
+                                    <div className="flex items-center gap-2 text-[11px] text-black font-medium flex-wrap">
+                                        <div className="flex items-center gap-1">
+                                            <BiCalendar className="text-black text-xs" />
+                                            <span>{item.date}</span>
+                                        </div>
+                                        <span className="text-black">•</span>
+                                        <div className="flex items-center gap-1 min-w-0">
+                                            <BiMapPin className="text-[#c27803] text-xs shrink-0" />
+                                            <span className="truncate max-w-[140px]">
+                                                {item.temple}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        ))}
-                    </div>
 
-                    {/* Right Arrow */}
-                    <button 
-                        onClick={handleNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white hover:bg-gray-100 text-gray-800 p-2.5 rounded-full shadow-lg transition-transform hover:scale-105 hidden md:flex items-center justify-center cursor-pointer"
-                    >
-                        <BiChevronRight className="text-2xl" />
-                    </button>
-
+                            <div className="p-4 pt-0">
+                                <Link
+                                    to={item.link}
+                                    className="block w-full bg-gradient-to-r from-[#df972b] to-[#c27803] hover:from-[#c27803] hover:to-[#c27803] text-white font-bold py-2 px-3 rounded-md text-center text-sm shadow-md hover:shadow-lg transition-all duration-300 active:scale-[0.98]"
+                                >
+                                    Offer Chadhawa
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-
             </div>
         </section>
     );

@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
@@ -8,73 +11,97 @@ import pojaKit2 from "../../assets/pojakit_2.jpg";
 import pojaKit8 from "../../assets/pojakit_8.jpg";
 import pujaSamagri from "../../assets/Puja _Samagri.png";
 
-/* ================= PUJA DATA ================= */
-const pujaList = [
+/* ================= PUJA DATA (EXPORTED) ================= */
+export const pujaList = [
     {
         id: 1,
         title: "Shani Sade Sati Peeda Shanti Mahapuja",
-        description: "Seek blessings from most revered Shani shrine. Relief from Sade Sati Dhaiya.",
+        description:
+            "Seek blessings from most revered Shani shrine. Relief from Sade Sati Dhaiya.",
         location: "Kokilavan, Kosi Kalan, Mathura",
+        temple: "Private Temple",
         badge: "Supreme Shani Pilgrimage",
         image: pojaKit2,
         price: 1100,
         pujaDate: "2026-09-20T10:00:00",
-        path: "/pooja-booking/1",
+        ratings: "3.58L+",
+        conducted: "19.68L+",
+        avgRating: "4.9/5",
     },
     {
         id: 2,
         title: "Bhu Varaha Swamy Homa to Remove Obstacles",
-        description: "Only remedy to land related problems. Special pooja for divine blessings.",
+        description:
+            "Only remedy to land related problems. Special pooja for divine blessings.",
         location: "Sri Bhu Varaha Swamy Temple, Tirumala",
+        temple: "Private Temple",
         badge: "Divine Grace",
         image: pojaKit8,
         price: 2100,
         pujaDate: "2026-09-18T08:00:00",
-        path: "/pooja-booking/2",
+        ratings: "3.58L+",
+        conducted: "19.68L+",
+        avgRating: "4.9/5",
     },
     {
         id: 3,
         title: "Vighnaharta Ganesh Panchamrit Abhishek",
-        description: "Special puja at Ganesha's birthplace to remove obstacles and receive blessings.",
+        description:
+            "Special puja at Ganesha's birthplace to remove obstacles and receive blessings.",
         location: "Siddhivinayak Temple, Mumbai",
+        temple: "Siddhivinayak Temple",
         badge: "Ganesh Chaturthi",
         image: pujaSamagri,
         price: 1500,
         pujaDate: "2026-09-15T06:00:00",
-        path: "/pooja-booking/3",
+        ratings: "2.10L+",
+        conducted: "12.50L+",
+        avgRating: "4.8/5",
     },
     {
         id: 4,
         title: "Maha Rudrabhishek at Kashi Vishwanath",
-        description: "Sacred Abhishek with milk, honey, and Gangajal for Lord Shiva's blessings.",
+        description:
+            "Sacred Abhishek with milk, honey, and Gangajal for Lord Shiva's blessings.",
         location: "Kashi Vishwanath Temple, Varanasi",
+        temple: "Kashi Vishwanath",
         badge: "Mahashivratri Special",
         image: pojaKit2,
         price: 3100,
         pujaDate: "2026-09-22T05:00:00",
-        path: "/pooja-booking/4",
+        ratings: "4.20L+",
+        conducted: "25.30L+",
+        avgRating: "4.9/5",
     },
     {
         id: 5,
         title: "Kaal Sarp Dosh Nivaran Puja",
-        description: "Comprehensive ritual to pacify planetary afflictions and bring peace.",
+        description:
+            "Comprehensive ritual to pacify planetary afflictions and bring peace.",
         location: "Trimbakeshwar Temple, Nashik",
+        temple: "Trimbakeshwar Temple",
         badge: "Dosha Nivaran",
         image: pojaKit8,
         price: 2500,
         pujaDate: "2026-09-25T07:00:00",
-        path: "/pooja-booking/5",
+        ratings: "1.90L+",
+        conducted: "10.25L+",
+        avgRating: "4.7/5",
     },
     {
         id: 6,
         title: "Navgrah Shanti Puja for Prosperity",
-        description: "Worship all nine planets to remove negative effects and invite abundance.",
+        description:
+            "Worship all nine planets to remove negative effects and invite abundance.",
         location: "Shani Shingnapur, Maharashtra",
+        temple: "Shani Shingnapur",
         badge: "Navgrah Shanti",
         image: pujaSamagri,
         price: 1800,
         pujaDate: "2026-09-28T09:00:00",
-        path: "/pooja-booking/6",
+        ratings: "2.80L+",
+        conducted: "15.40L+",
+        avgRating: "4.8/5",
     },
 ];
 
@@ -92,22 +119,21 @@ function useCountdown(targetDate) {
             expired: false,
         };
     };
-
     const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
-
     useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(getTimeLeft(targetDate));
-        }, 1000);
+        const timer = setInterval(
+            () => setTimeLeft(getTimeLeft(targetDate)),
+            1000
+        );
         return () => clearInterval(timer);
     }, [targetDate]);
-
     return timeLeft;
 }
 
 /* ================= COUNTDOWN DISPLAY ================= */
 function CountdownTimer({ targetDate }) {
-    const { days, hours, minutes, seconds, expired } = useCountdown(targetDate);
+    const { days, hours, minutes, seconds, expired } =
+        useCountdown(targetDate);
 
     if (expired) {
         return (
@@ -141,7 +167,6 @@ function UpcomingPujasSection() {
     return (
         <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-2 px-4 md:px-10">
             <div className="max-w-7xl mx-auto">
-
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-end justify-center mb-6 gap-3 pb-3">
                     <div className="flex flex-col items-center justify-center text-center w-full space-y-2">
@@ -153,8 +178,6 @@ function UpcomingPujasSection() {
                             Book sacred rituals performed by expert Vedic pandits for divine blessings.
                         </p>
                     </div>
-
-                   
                 </div>
 
                 {/* 6 Cards Grid */}
@@ -162,10 +185,9 @@ function UpcomingPujasSection() {
                     {pujaList.map((item) => (
                         <Link
                             key={item.id}
-                            to={item.path}
+                            to={`/pooja/${item.id}`}   // ✅ Yeh change kiya
                             className="group bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] rounded-md overflow-hidden border border-white/10 hover:border-[#df972b]/50 shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col justify-between hover:-translate-y-2 relative"
                         >
-                            {/* Image Banner */}
                             <div className="relative w-full h-56 overflow-hidden bg-black">
                                 <img
                                     src={item.image}
@@ -174,18 +196,17 @@ function UpcomingPujasSection() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#1c0f0a] via-transparent to-black/40"></div>
 
-                                {/* Badge */}
                                 <span className="absolute top-3 left-3 bg-[#df972b] text-[#120704] text-[10px] font-extrabold px-3 py-1 rounded-md shadow-md uppercase tracking-wider">
                                     {item.badge}
                                 </span>
 
-                                {/* Countdown Timer */}
                                 <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm px-2 py-1 rounded-md shadow-md">
-                                    <CountdownTimer targetDate={item.pujaDate} />
+                                    <CountdownTimer
+                                        targetDate={item.pujaDate}
+                                    />
                                 </div>
                             </div>
 
-                            {/* Body */}
                             <div className="p-5 flex flex-col justify-between flex-grow">
                                 <div>
                                     <h3 className="text-black sm:text-lg font-bold line-clamp-2 leading-snug group-hover:text-[#df972b] transition-colors mb-2">
@@ -196,19 +217,19 @@ function UpcomingPujasSection() {
                                     </p>
                                 </div>
 
-                                {/* Location + Price */}
                                 <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-1.5 text-black text-[11px] font-medium">
                                             <FaMapMarkerAlt className="text-[#df972b] shrink-0 text-xs" />
-                                            <span className="line-clamp-1">{item.location}</span>
+                                            <span className="line-clamp-1">
+                                                {item.location}
+                                            </span>
                                         </div>
                                         <span className="font-bold text-[#7a1c1c] text-sm">
                                             ₹{item.price}
                                         </span>
                                     </div>
 
-                                    {/* Book Button */}
                                     <div className="w-full bg-gradient-to-r from-[#df972b] to-[#c27803] group-hover:from-[#7a1c1c] group-hover:to-[#5c1414] text-white py-2.5 rounded-md text-xs font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-md">
                                         <span>Book Pooja Now</span>
                                         <HiArrowRight className="text-sm group-hover:translate-x-1 transition-transform" />

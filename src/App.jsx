@@ -45,6 +45,9 @@ import PopularChadhavaSection from "./components/Chadhawa/ChadhawaHomepage";
 import Chadhawa from "./components/Chadhawa/Chadhawa";
 import PoojaDetailPage from "./components/BookEPuja/PoojaDetailsSection";
 import EPoojaBookingpage from "./components/BookEPuja/EPoojaBookingpage";
+import PujaBookingForm from "./components/BookEPuja/PujaBookingForm";
+import ChadhawaDetailPage from "./components/Chadhawa/ChadhawaDetailPage";
+import ChadhawaBookingForm from "./components/Chadhawa/ChadhawaBookingForm";
 
 // ✅ YEH NAYA COMPONENT ADD KIYA HAI (Already Logged In User ko Login page se redirect karega)
 const RedirectIfLoggedIn = ({ children }) => {
@@ -107,12 +110,16 @@ function MainLayout() {
           <Route path="/pooja-booking" element={<BookPuja />} />
           <Route path="/pooja/:id" element={<PoojaDetailPage />} />
           <Route path="/pooja-booking/:id" element={<EPoojaBookingpage />} />
+          <Route path="/pooja-booking/:id/form" element={<PujaBookingForm />} />
 
           <Route path="/pandit-booking" element={<PanditBookingPage />} />
           <Route path="/pandit-package/:id" element={<PanditPackage />} />
 
           <Route path="/panditform" element={<PanditForm />} />
           <Route path="/Chadhawa" element={<Chadhawa />} />
+          <Route path="/chadhawa/:id" element={<ChadhawaDetailPage />} />
+          <Route path="/chadhawa/:id/form" element={<ChadhawaBookingForm />} />
+          
           {/* Product Details - Sabke liye khula (Bina Login ke bhi) */}
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/checkout" element={<Checkout />} />
@@ -151,3 +158,6 @@ function App() {
 }
 
 export default App;
+
+
+
