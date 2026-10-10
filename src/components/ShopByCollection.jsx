@@ -1,12 +1,12 @@
 
 
 
-
 // import React, { useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 // import { BiStar, BiShoppingBag, BiHeart } from "react-icons/bi";
 // import useProductStore from "../store/useProductStore";
-// // import useProductStore from "../../store/useProductStore";
+// import useWishlistStore from "../store/useWishlistStore";
+
 
 // const collectionCategories = [
 //   "Best Sellers",
@@ -19,6 +19,8 @@
 // const CategoryProductGrid = ({ activeTab }) => {
 //   const navigate = useNavigate();
 //   const { fetchProducts, getBestSellers, products } = useProductStore();
+//   const { addToWishlist, wishlist, removeFromWishlist } = useWishlistStore();
+//   const [toastMsg, setToastMsg] = useState(null);
 
 //   useEffect(() => {
 //     fetchProducts();
@@ -27,9 +29,8 @@
 //   let displayProducts = [];
 
 //   if (activeTab === "Best Sellers") {
-//     displayProducts = getBestSellers();
+//     displayProducts = typeof getBestSellers === 'function' ? getBestSellers() : products.slice(0, 4);
 //   } else {
-//     // 🔍 SMART FILTERING: Partial & Case-insensitive matching
 //     const searchKey = activeTab.toLowerCase().trim();
     
 //     displayProducts = products.filter((product) => {
@@ -37,7 +38,6 @@
 //       const prodName = product.name?.toLowerCase().trim() || "";
 //       const prodDesc = product.description?.toLowerCase().trim() || "";
 
-//       // Agar category match kare ya product ke naam/description mein wo word ho
 //       return (
 //         catName.includes(searchKey) ||
 //         searchKey.split(" ").some((word) => word.length > 2 && (catName.includes(word) || prodName.includes(word) || prodDesc.includes(word)))
@@ -45,16 +45,39 @@
 //     });
 //   }
 
-//   // Fallback agar filter hone ke baad bhi 0 products milte hain
 //   if (!displayProducts || displayProducts.length === 0) {
 //     displayProducts = products.slice(0, 4);
 //   }
 
+//   // Wishlist Toggle Handler
+//   const handleWishlistToggle = async (e, product) => {
+//     e.stopPropagation();
+//     const prodId = product._id || product.id;
+//     const isAlreadyInWishlist = wishlist?.some(item => (item._id === prodId || item.id === prodId || item.productId?._id === prodId));
+
+//     if (isAlreadyInWishlist) {
+//       await removeFromWishlist(prodId);
+//       setToastMsg("Removed from wishlist");
+//     } else {
+//       await addToWishlist(product);
+//       setToastMsg("Added to wishlist ❤️");
+//     }
+//     setTimeout(() => setToastMsg(null), 2500);
+//   };
+
 //   return (
-//     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+//     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+//       {/* Toast Notification */}
+//       {toastMsg && (
+//         <div className="fixed top-4 right-4 bg-[#6b23] text-white px-4 py-2 rounded shadow-lg z-50 text-xs font-medium">
+//           {toastMsg}
+//         </div>
+//       )}
+
 //       {displayProducts.map((product) => {
 //         const prodId = product._id || product.id;
 //         const prodImage = product.image;
+//         const isWishlisted = wishlist?.some(item => (item._id === prodId || item.id === prodId || item.productId?._id === prodId));
 
 //         return (
 //           <div
@@ -63,7 +86,7 @@
 //               navigate(`/product/${prodId}`);
 //               window.scrollTo({ top: 0, behavior: 'smooth' });
 //             }}
-//             className="bg-white border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
+//             className="bg-yellow-600 border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
 //           >
 //             <div>
 //               {/* Product Image Box */}
@@ -79,15 +102,15 @@
 //                 )}
 
 //                 <button 
-//                   onClick={(e) => { e.stopPropagation(); }}
-//                   className="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full hover:bg-white text-stone-600 hover:text-red-500 transition shadow-sm"
+//                   onClick={(e) => handleWishlistToggle(e, product)}
+//                   className="absolute top-2 right-2 bg-white/90 p-1.5 rounded-full hover:bg-white text-stone-600 hover:text-red-500 transition shadow-sm"
 //                 >
-//                   <BiHeart className="text-lg" />
+//                   <BiHeart className={`text-lg ${isWishlisted ? "text-red-500 fill-red-500" : ""}`} />
 //                 </button>
 //               </div>
 
 //               {/* Vendor / Category Label */}
-//               <p className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold mb-1">
+//               <p className="text-[11px] uppercase tracking-wider text-black font-semibold mb-1">
 //                 {product.category?.name || activeTab}
 //               </p>
 
@@ -98,9 +121,9 @@
 
 //               {/* Rating */}
 //               <div className="flex items-center gap-1 text-amber-500 text-xs mb-3">
-//                 <BiStar className="fill-amber-500" />
+//                 <BiStar className="fill-amber-800" />
 //                 <span className="font-bold text-stone-700">{product.rating || 4.8}</span>
-//                 <span className="text-stone-400 text-[11px]">(24)</span>
+//                 <span className="text-black text-[11px]">(24)</span>
 //               </div>
 //             </div>
 
@@ -122,7 +145,7 @@
 //                   navigate(`/product/${prodId}`);
 //                   window.scrollTo({ top: 0, behavior: 'smooth' });
 //                 }}
-//                 className="bg-[#4a2e18] hover:bg-[#321e10] text-white px-3 py-1.5 rounded-sm text-xs transition flex items-center gap-1"
+//                 className="bg-yellow-800 hover:bg-[#321e10] text-white px-3 py-1.5 rounded-sm text-xs transition flex items-center gap-1"
 //               >
 //                 <BiShoppingBag className="text-base" /> View
 //               </button>
@@ -138,12 +161,12 @@
 //   const [activeTab, setActiveTab] = useState("Best Sellers");
 
 //   return (
-//     <div className="bg-[#fff3df] py-16 px-4 overflow-hidden border-y border-[#edd5b9]">
+//     <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  py-16 px-4 overflow-hidden">
 //       <div className="max-w-[1400px] mx-auto">
 //         <div className="text-center mb-8">
-//           <h2 className="text-3xl sm:text-4xl font-serif text-[#4a2e18] tracking-wide inline-block font-semibold">
+//           <h2 className="text-3xl sm:text-4xl  text-[#4a2e18] tracking-wide inline-block font-semibold">
 //             {activeTab === "Best Sellers" ? (
-//               <>Bestsellers of <span className="italic font-normal">the Month</span></>
+//               <>E-Shop <span className="">the Month</span></>
 //             ) : (
 //               <>Shop by <span className="italic font-normal">{activeTab}</span></>
 //             )}
@@ -157,9 +180,9 @@
 //             <button
 //               key={index}
 //               onClick={() => setActiveTab(category)}
-//               className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm cursor-pointer ${
+//               className={`px-6 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm cursor-pointer ${
 //                 activeTab === category
-//                   ? "bg-[#6b2314] text-white shadow-md scale-105"
+//                   ? "bg-yellow-600 text-white shadow-md scale-105"
 //                   : "bg-white text-[#4a2e18] border border-[#e6d0b3] hover:bg-[#fdf2f0] hover:border-[#8b3a2b]"
 //               }`}
 //             >
@@ -185,7 +208,6 @@ import { useNavigate } from "react-router-dom";
 import { BiStar, BiShoppingBag, BiHeart } from "react-icons/bi";
 import useProductStore from "../store/useProductStore";
 import useWishlistStore from "../store/useWishlistStore";
-// import useWishlistStore from "../../store/use/useWishlistStore"; // Apne path ke hisab se check kar lena
 
 const collectionCategories = [
   "Best Sellers",
@@ -198,7 +220,7 @@ const collectionCategories = [
 const CategoryProductGrid = ({ activeTab }) => {
   const navigate = useNavigate();
   const { fetchProducts, getBestSellers, products } = useProductStore();
-  const { addToWishlist, wishlist, removeFromWishlist } = useWishlistStore();
+  const { toggleWishlist, wishlist } = useWishlistStore();
   const [toastMsg, setToastMsg] = useState(null);
 
   useEffect(() => {
@@ -208,7 +230,9 @@ const CategoryProductGrid = ({ activeTab }) => {
   let displayProducts = [];
 
   if (activeTab === "Best Sellers") {
-    displayProducts = typeof getBestSellers === 'function' ? getBestSellers() : products.slice(0, 4);
+    displayProducts = typeof getBestSellers === 'function' 
+      ? getBestSellers() 
+      : products.slice(0, 4);
   } else {
     const searchKey = activeTab.toLowerCase().trim();
     
@@ -219,7 +243,13 @@ const CategoryProductGrid = ({ activeTab }) => {
 
       return (
         catName.includes(searchKey) ||
-        searchKey.split(" ").some((word) => word.length > 2 && (catName.includes(word) || prodName.includes(word) || prodDesc.includes(word)))
+        searchKey.split(" ").some((word) => 
+          word.length > 2 && (
+            catName.includes(word) || 
+            prodName.includes(word) || 
+            prodDesc.includes(word)
+          )
+        )
       );
     });
   }
@@ -228,27 +258,24 @@ const CategoryProductGrid = ({ activeTab }) => {
     displayProducts = products.slice(0, 4);
   }
 
-  // Wishlist Toggle Handler
+  // ✅ Wishlist Toggle
   const handleWishlistToggle = async (e, product) => {
     e.stopPropagation();
     const prodId = product._id || product.id;
-    const isAlreadyInWishlist = wishlist?.some(item => (item._id === prodId || item.id === prodId || item.productId?._id === prodId));
+    const isAlreadyInWishlist = wishlist?.some(item => 
+      (item._id === prodId || item.id === prodId || item.productId?._id === prodId)
+    );
 
-    if (isAlreadyInWishlist) {
-      await removeFromWishlist(prodId);
-      setToastMsg("Removed from wishlist");
-    } else {
-      await addToWishlist(product);
-      setToastMsg("Added to wishlist ❤️");
-    }
+    await toggleWishlist(prodId);
+    setToastMsg(isAlreadyInWishlist ? "Removed from wishlist" : "Added to wishlist ❤️");
     setTimeout(() => setToastMsg(null), 2500);
   };
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-      {/* Toast Notification */}
+      {/* ✅ Toast Notification (ठीक किया) */}
       {toastMsg && (
-        <div className="fixed top-4 right-4 bg-[#6b23] text-white px-4 py-2 rounded shadow-lg z-50 text-xs font-medium">
+        <div className="fixed top-4 right-4 bg-[#8b3a2b] text-white px-4 py-2 rounded shadow-lg z-50 text-xs font-medium">
           {toastMsg}
         </div>
       )}
@@ -256,7 +283,9 @@ const CategoryProductGrid = ({ activeTab }) => {
       {displayProducts.map((product) => {
         const prodId = product._id || product.id;
         const prodImage = product.image;
-        const isWishlisted = wishlist?.some(item => (item._id === prodId || item.id === prodId || item.productId?._id === prodId));
+        const isWishlisted = wishlist?.some(item => 
+          (item._id === prodId || item.id === prodId || item.productId?._id === prodId)
+        );
 
         return (
           <div
@@ -265,7 +294,8 @@ const CategoryProductGrid = ({ activeTab }) => {
               navigate(`/product/${prodId}`);
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="bg-yellow-600 border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
+            // ✅ Background ठीक किया (bg-white)
+            className="bg-white border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
           >
             <div>
               {/* Product Image Box */}
@@ -288,7 +318,7 @@ const CategoryProductGrid = ({ activeTab }) => {
                 </button>
               </div>
 
-              {/* Vendor / Category Label */}
+              {/* Category Label */}
               <p className="text-[11px] uppercase tracking-wider text-black font-semibold mb-1">
                 {product.category?.name || activeTab}
               </p>
@@ -340,10 +370,10 @@ const ShopByCollection = () => {
   const [activeTab, setActiveTab] = useState("Best Sellers");
 
   return (
-    <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  py-16 px-4 overflow-hidden">
+    <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-16 px-4 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl  text-[#4a2e18] tracking-wide inline-block font-semibold">
+          <h2 className="text-3xl sm:text-4xl text-[#4a2e18] tracking-wide inline-block font-semibold">
             {activeTab === "Best Sellers" ? (
               <>E-Shop <span className="">the Month</span></>
             ) : (
@@ -370,7 +400,6 @@ const ShopByCollection = () => {
           ))}
         </div>
 
-        {/* Dynamic Grid Container */}
         <div className="transition-all duration-500">
           <CategoryProductGrid activeTab={activeTab} />
         </div>

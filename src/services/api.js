@@ -1,71 +1,63 @@
 
 
+import axiosInstance from "../Utils/axiosInstance";
+export const authAPI = {
+    register: (data) => axiosInstance.post('/api/user/register', data),
+    login: (data) => axiosInstance.post('/api/user/login', data),
+    getProfile: () => axiosInstance.get('/api/user/profile'),
+    updateProfile: (data) => axiosInstance.put('/api/user/profile', data),
+    refreshToken: (refreshToken) => axiosInstance.post('/api/user/refresh', { refreshToken }),
+    forgotPassword: (email) => axiosInstance.post('/api/user/forgot-password', { email }),
+    resetPassword: (token, password) => axiosInstance.put(`/api/user/reset-password/${token}`, { password }),
+};
 
-import axios from 'axios';
+// ==================== PRODUCT APIs ====================
+export const productAPI = {
+    getAll: () => axiosInstance.get('/api/products/all'),
+    getById: (id) => axiosInstance.get(`/api/products/${id}`),
+    addProduct: (data) => axiosInstance.post('/api/products/add', data),
+    updateProduct: (id, data) => axiosInstance.put(`/api/products/${id}`, data),
+    deleteProduct: (id) => axiosInstance.delete(`/api/products/${id}`),
+};
 
-// Backend ka base URL (development ke liye localhost)
-const API = axios.create({
-    baseURL: 'http://localhost:5000/api',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    withCredentials: true, // Agar refresh token httpOnly cookie mein save hai toh ye zaroori hai
-});
+// ==================== CART APIs ====================
+export const cartAPI = {
+    addToCart: (data) => axiosInstance.post('/api/cart/add', data),
+    getCart: (userId) => axiosInstance.get(`/api/cart/${userId}`),
+    updateQuantity: (data) => axiosInstance.put('/api/cart/update', data),
+    removeFromCart: (userId, productId) => axiosInstance.delete(`/api/cart/remove/${userId}/${productId}`),
+};
 
-// 1. Request Interceptor: Har API request ke sath automatically Access Token attach karne ke liye
-API.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-}, (error) => {
-    return Promise.reject(error);
-});
+// ==================== ORDER APIs ====================
+export const orderAPI = {
+    placeOrder: (data) => axiosInstance.post('/api/orders/place', data),
+    getMyOrders: () => axiosInstance.get('/api/orders/myorders'),
+    getOrderById: (id) => axiosInstance.get(`/api/orders/${id}`),
+    cancelOrder: (id) => axiosInstance.put(`/api/orders/${id}/cancel`),
+    getAllOrders: () => axiosInstance.get('/api/orders/admin/all'),
+    updateOrderStatus: (id, status) => axiosInstance.put(`/api/orders/${id}/status`, { status }),
+    getAdminStats: () => axiosInstance.get('/api/orders/admin/stats'),
+};
 
-// 2. Response Interceptor: Token expiry (401) handle karne aur Refresh Token se naya token lene ke liye
-API.interceptors.response.use(
-    (response) => response, // Agar response theek hai toh seedha pass kar do
-    async (error) => {
-        const originalRequest = error.config;
+// ==================== PAYMENT APIs ====================
+export const paymentAPI = {
+    createCheckout: (data) => axiosInstance.post('/api/payment/checkout', data),
+    verifyPayment: (data) => axiosInstance.post('/api/payment/verify', data),
+};
 
-        // Agar error 401 (Unauthorized) hai aur request pehle retry nahi hui hai
-        if (error.response && error.response.status === 401 && !originalRequest._retry) {
-            originalRequest._retry = true; // Infinite loop bachane ke liye flag set kiya
+// ==================== WISHLIST APIs ====================
+export const wishlistAPI = {
+    getWishlist: () => axiosInstance.get('/api/wishlist'),
+    toggleWishlist: (productId) => axiosInstance.post('/api/wishlist/toggle', { productId }),
+};
 
-            try {
-                // Backend par refresh token request bhej rahe hain
-                const { data } = await axios.post('http://localhost:5000/api/auth/refresh-token', {}, {
-                    withCredentials: true // Cookie bhejne ke liye
-                });
+// ==================== CATEGORY APIs ====================
+export const categoryAPI = {
+    getAll: () => axiosInstance.get('/api/categories'),
+};
 
-                if (data.token) {
-                    // Naya token localStorage mein save karein
-                    localStorage.setItem('token', data.token);
-
-                    // Naye token ko original request ke header mein lagakar dobara bhej dein
-                    originalRequest.headers.Authorization = `Bearer ${data.token}`;
-                    return API(originalRequest);
-                } else {
-                    // Agar refresh token kaam nahi kar raha, toh SIRF token remove karo, login par mat bhejo
-                    localStorage.removeItem('token');
-                }
-            } catch (refreshError) {
-                // Agar refresh token bhi expire ho gaya ho, toh SIRF token remove karo, login par mat bhejo
-                console.error("Refresh token expired. Logging out...");
-                localStorage.removeItem('token');
-                localStorage.removeItem('role');
-                localStorage.removeItem('user');
-                
-                // ❌ YE LINE HATA DI HAI (Taaki Add to Cart par wapas login na aaye)
-                // window.location.href = '/login'; 
-                
-                return Promise.reject(refreshError);
-            }
-        }
-
-        return Promise.reject(error);
-    }
-);
-
-export default API;
+// ==================== REVIEW APIs ====================
+export const reviewAPI = {
+    getReviews: (productId) => axiosInstance.get(`/api/reviews/${productId}`),
+    addReview: (data) => axiosInstance.post('/api/reviews/add', data),
+};

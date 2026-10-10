@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <>
       <HeroSection />
-      <ExplorePilgrimage/>
+      {/* <ExplorePilgrimage/> */}
       <SacredServicesSection/>
       {/* <ShopByCategory /> */}
       {/* <AstrologyRemedies /> */}
