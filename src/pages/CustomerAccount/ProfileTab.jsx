@@ -135,7 +135,7 @@ export default function ProfileTab({ profile, setProfile }) {
       const cleanedPhone = (profile.phone || '').replace(/\D/g, '').slice(-10);
 
       const response = await axios.put(
-        'http://localhost:5000/api/user/profile', 
+        'https://shopbackendlive.onrender.com/api/user/profile', 
         {
           name: profile.fullName,
           phone: cleanedPhone, // Cleaned 10-digit phone

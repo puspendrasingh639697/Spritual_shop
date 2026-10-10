@@ -1004,7 +1004,7 @@ function ChadhawaBookingForm() {
 
       // ⭐ Checkout
       const checkoutResponse = await fetch(
-        "http://localhost:5000/api/chadhava/create-checkout",
+        "https://shopbackendlive.onrender.com/api/chadhava/create-checkout",
         {
           method: "POST",
           headers: {
@@ -1030,7 +1030,7 @@ function ChadhawaBookingForm() {
           order_id: order.id,
           handler: async function (response) {
             const verifyRes = await fetch(
-              "http://localhost:5000/api/chadhava/verify-payment",
+              "https://shopbackendlive.onrender.com/api/chadhava/verify-payment",
               {
                 method: "POST",
                 headers: {

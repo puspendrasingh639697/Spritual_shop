@@ -471,7 +471,7 @@ import {
 } from "react-icons/fa";
 
 /* ================= API URL ================= */
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = "https://shopbackendlive.onrender.com/api";
 // Production: "https://shopbackendlive.onrender.com/api"
 
 /* ================= STEPS BAR ================= */

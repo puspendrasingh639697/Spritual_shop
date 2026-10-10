@@ -89,7 +89,7 @@ const useAddressStore = create((set, get) => ({
         return;
       }
 
-      const response = await axios.get('http://localhost:5000/api/user/address', {
+      const response = await axios.get('https://shopbackendlive.onrender.com/api/user/address', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -111,7 +111,7 @@ const useAddressStore = create((set, get) => ({
       if (!token) return { success: false, error: "Please login first." };
 
       const response = await axios.post(
-        'http://localhost:5000/api/user/address', 
+        'https://shopbackendlive.onrender.com/api/user/address', 
         addressData, 
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -135,7 +135,7 @@ const useAddressStore = create((set, get) => ({
       const token = localStorage.getItem('token');
       if (!token) return { success: false, error: "Please login first." };
 
-      await axios.delete(`http://localhost:5000/api/user/address/${addrId}`, {
+      await axios.delete(`https://shopbackendlive.onrender.com/api/user/address/${addrId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

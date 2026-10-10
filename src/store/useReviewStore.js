@@ -11,7 +11,7 @@ const useReviewStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/user/reviews', {
+      const response = await axios.get('https://shopbackendlive.onrender.com/api/user/reviews', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = Array.isArray(response.data) ? response.data : (response.data.reviews || []);
@@ -30,7 +30,7 @@ const useReviewStore = create((set, get) => ({
       if (!token) return { success: false, error: "Please login first." };
 
       const response = await axios.post(
-        'http://localhost:5000/api/reviews/add',
+        'https://shopbackendlive.onrender.com/api/reviews/add',
         reviewData,
         {
           headers: { Authorization: `Bearer ${token}` }

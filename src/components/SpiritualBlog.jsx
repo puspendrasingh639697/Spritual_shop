@@ -796,7 +796,7 @@ const fadeInUp = {
   }),
 };
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://shopbackendlive.onrender.com";
 const CATEGORIES_URL = `${API_BASE_URL}/api/categories`;
 const CATEGORIES_ADD_URL = `${API_BASE_URL}/api/categories/add`;
 
