@@ -215,7 +215,7 @@ function InsightsSection() {
             <div>
               <Link 
                 to="/blogs" 
-                className={`inline-flex items-center gap-2 text-sm sm:text-base  transition-all duration-300 hover:gap-3 bg-gradient-to-r from-[#df972b] to-[#c27803] px-4 py-2 rounded-lg backdrop-blur-sm border border-white/20 ${
+                className={`inline-flex items-center gap-2 text-sm sm:text-base  transition-all duration-300 hover:gap-3 bg-[#7b1e2b] px-4 py-2 rounded-lg backdrop-blur-sm border border-white/20 ${
                   location.pathname === "/blogs" ? "text-amber-300" : "text-white hover:text-amber-300"
                 }`}
               >

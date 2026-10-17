@@ -735,12 +735,12 @@ function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <Link
+                    {/* <Link
                       to="/pandit-booking"
                       className={`transition-colors hover:text-[#7b1e2b] ${location.pathname === "/pandit-booking" ? "text-[#7b1e2b]" : ""}`}
                     >
                       Book Pandit Ji
-                    </Link>
+                    </Link> */}
                   </li>
                   <li>
                     <Link

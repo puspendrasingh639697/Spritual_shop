@@ -239,7 +239,7 @@ function MainLayout() {
   const isAccountPage = location.pathname === "/account";
 
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]">
       {!isAccountPage && <Navbar />}
 
       <div className="flex-1">

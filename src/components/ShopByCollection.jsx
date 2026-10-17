@@ -7,7 +7,6 @@
 // import useProductStore from "../store/useProductStore";
 // import useWishlistStore from "../store/useWishlistStore";
 
-
 // const collectionCategories = [
 //   "Best Sellers",
 //   "Puja Kits",
@@ -19,7 +18,7 @@
 // const CategoryProductGrid = ({ activeTab }) => {
 //   const navigate = useNavigate();
 //   const { fetchProducts, getBestSellers, products } = useProductStore();
-//   const { addToWishlist, wishlist, removeFromWishlist } = useWishlistStore();
+//   const { toggleWishlist, wishlist } = useWishlistStore();
 //   const [toastMsg, setToastMsg] = useState(null);
 
 //   useEffect(() => {
@@ -29,7 +28,9 @@
 //   let displayProducts = [];
 
 //   if (activeTab === "Best Sellers") {
-//     displayProducts = typeof getBestSellers === 'function' ? getBestSellers() : products.slice(0, 4);
+//     displayProducts = typeof getBestSellers === 'function' 
+//       ? getBestSellers() 
+//       : products.slice(0, 4);
 //   } else {
 //     const searchKey = activeTab.toLowerCase().trim();
     
@@ -40,7 +41,13 @@
 
 //       return (
 //         catName.includes(searchKey) ||
-//         searchKey.split(" ").some((word) => word.length > 2 && (catName.includes(word) || prodName.includes(word) || prodDesc.includes(word)))
+//         searchKey.split(" ").some((word) => 
+//           word.length > 2 && (
+//             catName.includes(word) || 
+//             prodName.includes(word) || 
+//             prodDesc.includes(word)
+//           )
+//         )
 //       );
 //     });
 //   }
@@ -49,27 +56,24 @@
 //     displayProducts = products.slice(0, 4);
 //   }
 
-//   // Wishlist Toggle Handler
+//   // ✅ Wishlist Toggle
 //   const handleWishlistToggle = async (e, product) => {
 //     e.stopPropagation();
 //     const prodId = product._id || product.id;
-//     const isAlreadyInWishlist = wishlist?.some(item => (item._id === prodId || item.id === prodId || item.productId?._id === prodId));
+//     const isAlreadyInWishlist = wishlist?.some(item => 
+//       (item._id === prodId || item.id === prodId || item.productId?._id === prodId)
+//     );
 
-//     if (isAlreadyInWishlist) {
-//       await removeFromWishlist(prodId);
-//       setToastMsg("Removed from wishlist");
-//     } else {
-//       await addToWishlist(product);
-//       setToastMsg("Added to wishlist ❤️");
-//     }
+//     await toggleWishlist(prodId);
+//     setToastMsg(isAlreadyInWishlist ? "Removed from wishlist" : "Added to wishlist ❤️");
 //     setTimeout(() => setToastMsg(null), 2500);
 //   };
 
 //   return (
 //     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-//       {/* Toast Notification */}
+//       {/* ✅ Toast Notification (ठीक किया) */}
 //       {toastMsg && (
-//         <div className="fixed top-4 right-4 bg-[#6b23] text-white px-4 py-2 rounded shadow-lg z-50 text-xs font-medium">
+//         <div className="fixed top-4 right-4 bg-[#8b3a2b] text-white px-4 py-2 rounded shadow-lg z-50 text-xs font-medium">
 //           {toastMsg}
 //         </div>
 //       )}
@@ -77,7 +81,9 @@
 //       {displayProducts.map((product) => {
 //         const prodId = product._id || product.id;
 //         const prodImage = product.image;
-//         const isWishlisted = wishlist?.some(item => (item._id === prodId || item.id === prodId || item.productId?._id === prodId));
+//         const isWishlisted = wishlist?.some(item => 
+//           (item._id === prodId || item.id === prodId || item.productId?._id === prodId)
+//         );
 
 //         return (
 //           <div
@@ -86,7 +92,8 @@
 //               navigate(`/product/${prodId}`);
 //               window.scrollTo({ top: 0, behavior: 'smooth' });
 //             }}
-//             className="bg-yellow-600 border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
+//             // ✅ Background ठीक किया (bg-white)
+//             className="bg-white border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
 //           >
 //             <div>
 //               {/* Product Image Box */}
@@ -109,7 +116,7 @@
 //                 </button>
 //               </div>
 
-//               {/* Vendor / Category Label */}
+//               {/* Category Label */}
 //               <p className="text-[11px] uppercase tracking-wider text-black font-semibold mb-1">
 //                 {product.category?.name || activeTab}
 //               </p>
@@ -161,10 +168,10 @@
 //   const [activeTab, setActiveTab] = useState("Best Sellers");
 
 //   return (
-//     <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  py-16 px-4 overflow-hidden">
+//     <div className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-16 px-4 overflow-hidden">
 //       <div className="max-w-[1400px] mx-auto">
 //         <div className="text-center mb-8">
-//           <h2 className="text-3xl sm:text-4xl  text-[#4a2e18] tracking-wide inline-block font-semibold">
+//           <h2 className="text-3xl sm:text-4xl text-[#4a2e18] tracking-wide inline-block font-semibold">
 //             {activeTab === "Best Sellers" ? (
 //               <>E-Shop <span className="">the Month</span></>
 //             ) : (
@@ -191,7 +198,6 @@
 //           ))}
 //         </div>
 
-//         {/* Dynamic Grid Container */}
 //         <div className="transition-all duration-500">
 //           <CategoryProductGrid activeTab={activeTab} />
 //         </div>
@@ -275,7 +281,7 @@ const CategoryProductGrid = ({ activeTab }) => {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
       {/* ✅ Toast Notification (ठीक किया) */}
       {toastMsg && (
-        <div className="fixed top-4 right-4 bg-[#8b3a2b] text-white px-4 py-2 rounded shadow-lg z-50 text-xs font-medium">
+        <div className="fixed top-4 right-4 bg-[#7b1e2b] text-white px-4 py-2 rounded shadow-lg z-50 text-xs font-medium">
           {toastMsg}
         </div>
       )}
@@ -295,7 +301,7 @@ const CategoryProductGrid = ({ activeTab }) => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             // ✅ Background ठीक किया (bg-white)
-            className="bg-white border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
+            className="bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] border border-[#edd5b9] rounded-sm p-4 flex flex-col justify-between hover:shadow-lg transition-all cursor-pointer group relative"
           >
             <div>
               {/* Product Image Box */}
@@ -339,7 +345,7 @@ const CategoryProductGrid = ({ activeTab }) => {
             {/* Price & Action Button */}
             <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
               <div>
-                <span className="text-sm font-bold text-[#8b3a2b]">
+                <span className="text-sm font-bold text-[#7b1e2b]">
                   Rs. {product.price}
                 </span>
                 {product.oldPrice && (
@@ -354,7 +360,7 @@ const CategoryProductGrid = ({ activeTab }) => {
                   navigate(`/product/${prodId}`);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="bg-yellow-800 hover:bg-[#321e10] text-white px-3 py-1.5 rounded-sm text-xs transition flex items-center gap-1"
+                className="bg-[#7b1e2b] hover:bg-[#5a1420] text-white px-3 py-1.5 rounded-sm text-xs transition flex items-center gap-1"
               >
                 <BiShoppingBag className="text-base" /> View
               </button>
@@ -380,7 +386,7 @@ const ShopByCollection = () => {
               <>Shop by <span className="italic font-normal">{activeTab}</span></>
             )}
           </h2>
-          <div className="w-16 h-[2px] bg-[#8b3a2b] mx-auto mt-3 rounded-full"></div>
+          <div className="w-16 h-[2px] bg-[#7b1e2b] mx-auto mt-3 rounded-full"></div>
         </div>
 
         {/* Category Navigation Tabs */}
@@ -391,8 +397,8 @@ const ShopByCollection = () => {
               onClick={() => setActiveTab(category)}
               className={`px-6 py-2.5 rounded-md text-xs sm:text-sm font-medium transition-all duration-300 shadow-sm cursor-pointer ${
                 activeTab === category
-                  ? "bg-yellow-600 text-white shadow-md scale-105"
-                  : "bg-white text-[#4a2e18] border border-[#e6d0b3] hover:bg-[#fdf2f0] hover:border-[#8b3a2b]"
+                  ? "bg-[#7b1e2b] text-white shadow-md scale-105"
+                  : "bg-white text-[#4a2e18] border border-[#e6d0b3] hover:bg-[#fdf2f0] hover:border-[#7b1e2b]"
               }`}
             >
               {category}

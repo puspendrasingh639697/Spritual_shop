@@ -122,10 +122,10 @@ function HeroSection() {
               Book a Puja
             </Link>
             <Link
-              to="/temples"
+              to="//chadhawa"
               className="bg-white hover:bg-gray-100 text-[#7b1e2b] px-5 py-2 rounded-md font-semibold text-xs md:text-sm transition shadow-2xl"
             >
-              Explore Temples →
+              Explore chadhawa 
             </Link>
           </div>
         </div>

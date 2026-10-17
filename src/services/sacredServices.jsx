@@ -9,10 +9,10 @@ import idols5 from "../assets/Idols5.png";
 
 // Real Icons for Icon Strip
 import templesIcon from "../assets/templespush.webp";
-import onlinePujasIcon from "../assets/online-pujas.webp";
+import onlinePujasIcon from "../assets/online-pujas2.png"; 
 import chadhavaIcon from "../assets/chadhava.webp";
 import shopIcon from "../assets/shop.webp";
-import kundliIcon from "../assets/kundli.webp";
+// import kundliIcon from "../assets/kundli.webp";
 import panchangIcon from "../assets/panchang.webp";
 import libraryIcon from "../assets/library.webp";
 
@@ -24,7 +24,7 @@ const iconServices = [
   { title: "Online Pujas",  subtitle: "Authentic Vedic Pujas",   icon: onlinePujasIcon, path: "/pooja-booking" },
   { title: "Chadhava",      subtitle: "Offer with Devotion",     icon: chadhavaIcon,    path: "/chadhawa" },
   { title: "Store",         subtitle: "Sacred Puja Essentials",  icon: shopIcon,        path: "/e-shop" },
-  { title: "Kundli",        subtitle: "Explore Your Birth Chart", icon: kundliIcon,      path: "/kundli" },
+  // { title: "Kundli",        subtitle: "Explore Your Birth Chart", icon: kundliIcon,      path: "/kundli" },
   { title: "Panchang",      subtitle: "Daily Hindu Calendar",    icon: panchangIcon,    path: "/panchang" },
   { title: "Library",       subtitle: "Know & Grow in Faith",    icon: libraryIcon,     path: "/blogs" },
 ];
@@ -74,7 +74,7 @@ function SacredServicesSection() {
           ============================================================ */}
       <section className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] py-6 md:py-8">
         <div className="max-w-7xl mx-auto px-3 md:px-6">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
             {iconServices.map((service, index) => (
               <Link
                 key={index}

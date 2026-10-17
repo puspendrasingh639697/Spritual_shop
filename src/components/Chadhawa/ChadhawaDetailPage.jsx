@@ -1,257 +1,3 @@
-// // import React, { useState, useEffect } from "react";
-// // import { useParams, Link, useNavigate } from "react-router-dom";
-// // import {
-// //     FaCalendarAlt,
-// //     FaPhone,
-// //     FaWhatsapp,
-// //     FaStar,
-// //     FaChevronRight,
-// //     FaChevronLeft,
-// //     FaTimes,
-// //     FaCheck,
-// //     FaGift,
-// // } from "react-icons/fa";
-// // import { chadhawaList } from "./ChadhawaHomepage";
-// // import ChadhawaPackageModal from "./ChadhawaPackageModal";
-
-// // /* ================= COUNTDOWN HOOK ================= */
-// // function useCountdown(targetDate) {
-// //     const getTimeLeft = (target) => {
-// //         const diff = new Date(target) - new Date();
-// //         if (diff <= 0)
-// //             return { hours: 0, minutes: 0, seconds: 0, expired: true };
-// //         return {
-// //             hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-// //             minutes: Math.floor((diff / (1000 * 60)) % 60),
-// //             seconds: Math.floor((diff / 1000) % 60),
-// //             expired: false,
-// //         };
-// //     };
-// //     const [timeLeft, setTimeLeft] = useState(getTimeLeft(targetDate));
-// //     useEffect(() => {
-// //         const timer = setInterval(
-// //             () => setTimeLeft(getTimeLeft(targetDate)),
-// //             1000
-// //         );
-// //         return () => clearInterval(timer);
-// //     }, [targetDate]);
-// //     return timeLeft;
-// // }
-
-
-
-// // /* ================= MAIN PAGE ================= */
-// // function ChadhawaDetailPage() {
-// //     const { id } = useParams();
-// //     const chadhawa = chadhawaList.find((c) => c.id === Number(id));
-// //     const { hours, minutes, seconds } = useCountdown(
-// //         chadhawa?.chadhawaDate || new Date()
-// //     );
-// //     const [isModalOpen, setIsModalOpen] = useState(false);
-
-// //     if (!chadhawa) {
-// //         return (
-// //             <div className="min-h-screen flex items-center justify-center bg-[#fdfaf6]">
-// //                 <div className="text-center">
-// //                     <h1 className="text-2xl font-bold text-gray-800 mb-4">
-// //                         Chadhawa Not Found
-// //                     </h1>
-// //                     <Link
-// //                         to="/chadhawa"
-// //                         className="inline-block bg-[#e65100] text-white px-6 py-2 rounded-md"
-// //                     >
-// //                         Go Back
-// //                     </Link>
-// //                 </div>
-// //             </div>
-// //         );
-// //     }
-
-// //     const chadhawaDate = new Date(chadhawa.chadhawaDate);
-// //     const formattedDate = chadhawaDate.toLocaleDateString("en-IN", {
-// //         weekday: "short",
-// //         day: "numeric",
-// //         month: "short",
-// //         year: "numeric",
-// //     });
-
-// //     return (
-// //         <div className="w-full h-screen bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] flex flex-col overflow-hidden">
-// //             {/* BREADCRUMB */}
-// //             <div className="px-6 md:px-12 py-2 text-xs text-gray-500 flex items-center gap-2 shrink-0">
-// //                 <Link to="/" className="hover:text-[#c27803]">
-// //                     Home
-// //                 </Link>
-                
-// //                 <span>›</span>
-// //                 <span className="text-black font-medium truncate max-w-[300px]">
-// //                     {chadhawa.title}
-// //                 </span>
-// //             </div>
-
-// //             {/* MAIN CONTENT */}
-// //             <div className="h-[calc(110vh-130px)] flex items-center justify-center px-6 md:px-12 overflow-hidden">
-// //                 <div className="w-full max-w-[1100px] h-[90vh]">
-// //                     <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] h-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] overflow-hidden">
-// //                         {/* LEFT: IMAGE */}
-// //                         <div className="relative h-full p-2.5">
-// //                             <div className="relative w-full h-full rounded-md overflow-hidden group cursor-pointer  border-[1px] border-amber-600/30">
-// //                                 <img
-// //                                     src={chadhawa.image}
-// //                                     alt={chadhawa.title}
-// //                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-// //                                 />
-
-// //                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-between p-4">
-// //                                     <div className="self-start">
-// //                                         <div className="bg-amber-100/90 backdrop-blur-md px-3 py-1 rounded-md shadow border border-amber-300 flex items-center gap-1.5">
-                                            
-// //                                             <span className="text-[11px] font-bold text-amber-900">
-// //                                                 Why Choose Puspendra
-// //                                             </span>
-// //                                         </div>
-// //                                     </div>
-
-// //                                     <div className="space-y-2">
-// //                                         <div className="flex justify-center items-center gap-1.5 pt-1">
-// //                                             <span className="w-2 h-2 rounded-full bg-white/50"></span>
-// //                                             <span className="w-2 h-2 rounded-full bg-white/50"></span>
-// //                                             <span className="w-6 h-2 rounded-full bg-[#df972b]"></span>
-// //                                             <span className="w-2 h-2 rounded-full bg-white/50"></span>
-// //                                         </div>
-// //                                     </div>
-// //                                 </div>
-
-// //                                 <button className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition cursor-pointer opacity-0 group-hover:opacity-100">
-// //                                     <FaChevronLeft className="text-gray-700 text-[10px]" />
-// //                                 </button>
-
-// //                                 <button className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/95 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition cursor-pointer opacity-0 group-hover:opacity-100">
-// //                                     <FaChevronRight className="text-gray-700 text-[10px]" />
-// //                                 </button>
-// //                             </div>
-// //                         </div>
-
-// //                         {/* RIGHT: DETAILS */}
-// //                         <div className="p-5 md:p-7 flex flex-col justify-center h-full overflow-hidden">
-// //                             <h1 className="text-lg md:text-xl lg:text-[24px] font-bold leading-tight mb-2 text-black">
-// //                                 {chadhawa.title}
-// //                             </h1>
-
-// //                             <p className="text-sm text-yellow-600 font-semibold">
-// //                                 13 Saturdays Daan Recommended
-// //                             </p>
-
-// //                             {/* Temple */}
-// //                             <div className="flex items-center gap-2 text-sm text-black mb-2">
-// //                                 <svg viewBox="0 0 24 24" className="w-4 h-4 text-gray-500 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5">
-// //                                     <path d="M12 3L4 9h16L12 3zM6 9v9M18 9v9M4 18h16v2H4v-2zM9 18v-5M15 18v-5" />
-// //                                 </svg>
-// //                                 <span>{chadhawa.temple}</span>
-// //                             </div>
-
-// //                             {/* Date */}
-// //                             <div className="flex items-center gap-2 text-sm text-black mb-4">
-// //                                 <FaCalendarAlt className="w-4 h-4 text-black shrink-0" />
-// //                                 <span>{formattedDate} - Auspicious Muhurat</span>
-// //                             </div>
-
-// //                             {/* Countdown */}
-// //                             <div className="flex items-center gap-3 mb-4 flex-wrap">
-// //                                 <span className="text-sm font-bold text-gray-800">
-// //                                     Chadhawa in
-// //                                 </span>
-// //                                 <div className="flex items-center gap-1.5">
-// //                                     <div className="bg-gradient-to-r from-[#df972b] to-[#c27803] text-white font-bold px-3 py-1 rounded-md text-sm md:text-base">
-// //                                         {String(hours).padStart(2, "0")} HR
-// //                                     </div>
-// //                                     <span className="text-[#e65100] font-bold">:</span>
-// //                                     <div className="bg-gradient-to-r from-[#df972b] to-[#c27803] text-white font-bold px-3 py-1 rounded-md text-sm md:text-base">
-// //                                         {String(minutes).padStart(2, "0")} MIN
-// //                                     </div>
-// //                                     <span className="text-[#e65100] font-bold">:</span>
-// //                                     <div className="bg-gradient-to-r from-[#df972b] to-[#c27803] text-white font-bold px-3 py-1 rounded-md text-sm md:text-base">
-// //                                         {String(seconds).padStart(2, "0")} SEC
-// //                                     </div>
-// //                                 </div>
-// //                             </div>
-
-// //                             {/* Devotees + Rating */}
-// //                             <div className="flex items-center justify-between mb-5 flex-wrap gap-2">
-// //                                 <div className="flex items-center gap-2.5">
-// //                                     <div className="flex -space-x-2">
-// //                                         <img src="https://i.pravatar.cc/32?img=1" alt="d" className="w-7 h-7 rounded-full border-2 border-white shadow-sm" />
-// //                                         <img src="https://i.pravatar.cc/32?img=2" alt="d" className="w-7 h-7 rounded-full border-2 border-white shadow-sm" />
-// //                                         <img src="https://i.pravatar.cc/32?img=3" alt="d" className="w-7 h-7 rounded-full border-2 border-white shadow-sm" />
-// //                                         <img src="https://i.pravatar.cc/32?img=4" alt="d" className="w-7 h-7 rounded-full border-2 border-white shadow-sm" />
-// //                                     </div>
-// //                                     <div>
-// //                                         <p className="text-sm font-bold text-black leading-tight">
-// //                                             5 Lakh+
-// //                                         </p>
-// //                                         <p className="text-[11px] text-black leading-tight">
-// //                                             have offered Chadhawa
-// //                                         </p>
-// //                                     </div>
-// //                                 </div>
-// //                                 <div className="flex items-center gap-1.5 bg-gradient-to-r from-[#df972b] to-[#c27803] border border-gray-200 px-2.5 py-1 rounded-md">
-// //                                     <span className="text-sm font-bold text-white">4.8</span>
-// //                                     <FaStar className="text-amber-800 text-[10px]" />
-// //                                     <span className="text-[10px] text-white border-l border-gray-300 pl-1.5 ml-0.5">
-// //                                         1k+
-// //                                     </span>
-// //                                 </div>
-// //                             </div>
-
-// //                             {/* Price */}
-// //                             <div className="mb-5">
-// //                                 <p className="text-[12px] text-black font-medium uppercase tracking-wider">
-// //                                     Starting from
-// //                                 </p>
-// //                                 <p className="text-3xl font-bold text-[#7a1c1c]">
-// //                                     ₹{chadhawa.price}
-// //                                 </p>
-// //                             </div>
-
-// //                             {/* CTA BUTTONS */}
-// //                             <div className="flex items-center gap-2.5 mt-auto w-full">
-// //                                 <button
-// //                                     onClick={() => setIsModalOpen(true)}
-// //                                     className="flex-1 min-w-0 bg-gradient-to-r from-[#df972b] to-[#c27803] hover:from-[#c27803] hover:to-[#c27803] text-white font-bold py-3 rounded-md text-sm md:text-base  hover:shadow-[0_6px_20px_-3px_rgba(230,81,0,0.5)] transition-all duration-300 cursor-pointer active:scale-[0.98] whitespace-nowrap"
-// //                                 >
-// //                                     Offer Chadhawa
-// //                                 </button>
-// //                                 <a
-// //                                     href="tel:+919999999999"
-// //                                     className="w-11 h-11 rounded-full bg-[#2196f3] flex items-center justify-center text-white shadow-md hover:bg-[#1976d2] hover:scale-105 transition-all cursor-pointer shrink-0"
-// //                                 >
-// //                                     <FaPhone className="text-sm" />
-// //                                 </a>
-// //                                 <a
-// //                                     href="https://wa.me/919999999999"
-// //                                     target="_blank"
-// //                                     rel="noopener noreferrer"
-// //                                     className="w-11 h-11 rounded-full bg-[#25d366] flex items-center justify-center text-white shadow-md hover:bg-[#1ebe57] hover:scale-105 transition-all cursor-pointer shrink-0"
-// //                                 >
-// //                                     <FaWhatsapp className="text-lg" />
-// //                                 </a>
-// //                             </div>
-// //                         </div>
-// //                     </div>
-// //                 </div>
-// //             </div>
-
-// //             {/* MODAL */}
-// //             <ChadhawaPackageModal
-// //                 isOpen={isModalOpen}
-// //                 onClose={() => setIsModalOpen(false)}
-// //                 chadhawa={chadhawa}
-// //             />
-// //         </div>
-// //     );
-// // }
-
-// // export default ChadhawaDetailPage;
 
 
 
@@ -262,13 +8,8 @@
 //   FaPhone,
 //   FaWhatsapp,
 //   FaStar,
-//   FaChevronRight,
-//   FaChevronLeft,
-//   FaGift,
-//   FaCheck,
 // } from "react-icons/fa";
 // import useChadhavaStore from "../../store/useChadhavaStore";
-// import ChadhawaPackageModal from "./ChadhawaPackageModal";
 
 // /* ================= COUNTDOWN HOOK ================= */
 // function useCountdown(targetDate) {
@@ -298,15 +39,12 @@
 // function ChadhawaDetailPage() {
 //   const { id } = useParams();
 
-//   // ⭐ Store se data
 //   const {
 //     singleChadhava: chadhawa,
 //     loading,
 //     error,
 //     fetchChadhavaById,
 //   } = useChadhavaStore();
-
-//   const [isModalOpen, setIsModalOpen] = useState(false);
 
 //   // ⭐ API se fetch karo
 //   useEffect(() => {
@@ -320,7 +58,7 @@
 //   dummyDate.setDate(dummyDate.getDate() + 7);
 //   const { hours, minutes, seconds } = useCountdown(dummyDate);
 
-//   // Loading
+//   // ═══════ Loading ═══════
 //   if (loading) {
 //     return (
 //       <div className="min-h-screen flex items-center justify-center bg-[#fdfaf6]">
@@ -334,7 +72,7 @@
 //     );
 //   }
 
-//   // Error
+//   // ═══════ Error ═══════
 //   if (error || !chadhawa) {
 //     return (
 //       <div className="min-h-screen flex items-center justify-center bg-[#fdfaf6]">
@@ -344,7 +82,7 @@
 //           </h1>
 //           <Link
 //             to="/chadhawa"
-//             className="inline-block bg-[#e65100] text-white px-6 py-2 rounded-md"
+//             className="inline-block bg-[#e65100] text-white px-6 py-2 rounded-md hover:bg-[#c27803] transition-all"
 //           >
 //             Go Back
 //           </Link>
@@ -353,7 +91,7 @@
 //     );
 //   }
 
-//   // Date
+//   // ═══════ Date ═══════
 //   const chadhawaDate = new Date();
 //   chadhawaDate.setDate(chadhawaDate.getDate() + 7);
 //   const formattedDate = chadhawaDate.toLocaleDateString("en-IN", {
@@ -365,7 +103,7 @@
 
 //   return (
 //     <div className="w-full h-screen bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] flex flex-col overflow-hidden">
-//       {/* BREADCRUMB */}
+//       {/* ═══════ BREADCRUMB ═══════ */}
 //       <div className="px-6 md:px-12 py-2 text-xs text-gray-500 flex items-center gap-2 shrink-0">
 //         <Link to="/" className="hover:text-[#c27803]">
 //           Home
@@ -380,11 +118,11 @@
 //         </span>
 //       </div>
 
-//       {/* MAIN CONTENT */}
+//       {/* ═══════ MAIN CONTENT ═══════ */}
 //       <div className="h-[calc(110vh-130px)] flex items-center justify-center px-6 md:px-12 overflow-hidden">
 //         <div className="w-full max-w-[1100px] h-[90vh]">
 //           <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] h-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] overflow-hidden">
-//             {/* LEFT: IMAGE */}
+//             {/* ═══════ LEFT: IMAGE ═══════ */}
 //             <div className="relative h-full p-2.5">
 //               <div className="relative w-full h-full rounded-md overflow-hidden group cursor-pointer border-[1px] border-amber-600/30">
 //                 <img
@@ -413,17 +151,18 @@
 //               </div>
 //             </div>
 
-//             {/* RIGHT: DETAILS */}
+//             {/* ═══════ RIGHT: DETAILS ═══════ */}
 //             <div className="p-5 md:p-7 flex flex-col justify-center h-full overflow-hidden">
 //               <h1 className="text-lg md:text-xl lg:text-[24px] font-bold leading-tight mb-2 text-black">
 //                 {chadhawa.name}
 //               </h1>
 
 //               <p className="text-sm text-yellow-600 font-semibold capitalize">
-//                 {chadhawa.chadhavaType?.replace("_", " ")} Chadhawa — {chadhawa.deity}
+//                 {chadhawa.chadhavaType?.replace("_", " ")} Chadhawa —{" "}
+//                 {chadhawa.deity}
 //               </p>
 
-//               {/* Temple */}
+//               {/* ─── Temple ─── */}
 //               <div className="flex items-center gap-2 text-sm text-black mb-2">
 //                 <svg
 //                   viewBox="0 0 24 24"
@@ -440,13 +179,13 @@
 //                 </span>
 //               </div>
 
-//               {/* Date */}
+//               {/* ─── Date ─── */}
 //               <div className="flex items-center gap-2 text-sm text-black mb-4">
 //                 <FaCalendarAlt className="w-4 h-4 text-black shrink-0" />
 //                 <span>{formattedDate} - Auspicious Muhurat</span>
 //               </div>
 
-//               {/* Countdown */}
+//               {/* ─── Countdown ─── */}
 //               <div className="flex items-center gap-3 mb-4 flex-wrap">
 //                 <span className="text-sm font-bold text-gray-800">
 //                   Chadhawa in
@@ -466,17 +205,31 @@
 //                 </div>
 //               </div>
 
-//               {/* Rating */}
+//               {/* ─── Rating ─── */}
 //               <div className="flex items-center justify-between mb-5 flex-wrap gap-2">
 //                 <div className="flex items-center gap-2.5">
 //                   <div className="flex -space-x-2">
-//                     <img src="https://i.pravatar.cc/32?img=1" alt="d" className="w-7 h-7 rounded-full border-2 border-white" />
-//                     <img src="https://i.pravatar.cc/32?img=2" alt="d" className="w-7 h-7 rounded-full border-2 border-white" />
-//                     <img src="https://i.pravatar.cc/32?img=3" alt="d" className="w-7 h-7 rounded-full border-2 border-white" />
+//                     <img
+//                       src="https://i.pravatar.cc/32?img=1"
+//                       alt="d"
+//                       className="w-7 h-7 rounded-full border-2 border-white"
+//                     />
+//                     <img
+//                       src="https://i.pravatar.cc/32?img=2"
+//                       alt="d"
+//                       className="w-7 h-7 rounded-full border-2 border-white"
+//                     />
+//                     <img
+//                       src="https://i.pravatar.cc/32?img=3"
+//                       alt="d"
+//                       className="w-7 h-7 rounded-full border-2 border-white"
+//                     />
 //                   </div>
 //                   <div>
 //                     <p className="text-sm font-bold text-black">5 Lakh+</p>
-//                     <p className="text-[11px] text-black">have offered Chadhawa</p>
+//                     <p className="text-[11px] text-black">
+//                       have offered Chadhawa
+//                     </p>
 //                   </div>
 //                 </div>
 //                 <div className="flex items-center gap-1.5 bg-gradient-to-r from-[#df972b] to-[#c27803] px-2.5 py-1 rounded-md">
@@ -488,7 +241,7 @@
 //                 </div>
 //               </div>
 
-//               {/* Price */}
+//               {/* ─── Price ─── */}
 //               <div className="mb-5">
 //                 <p className="text-[12px] text-black font-medium uppercase tracking-wider">
 //                   Starting from
@@ -498,25 +251,30 @@
 //                 </p>
 //               </div>
 
-//               {/* CTA */}
+//               {/* ═══════ CTA — Link Tag ═══════ */}
 //               <div className="flex items-center gap-2.5 mt-auto w-full">
-//                 <button
-//                   onClick={() => setIsModalOpen(true)}
-//                   className="flex-1 min-w-0 bg-gradient-to-r from-[#df972b] to-[#c27803] text-white font-bold py-3 rounded-md text-sm hover:shadow-lg transition-all cursor-pointer"
+//                 {/* ⭐ LINK TAG — Booking form ke liye */}
+//                 <Link
+//                   to={`/chadhawa/${chadhawa._id}/form`}
+//                   className="flex-1 min-w-0 bg-gradient-to-r from-[#df972b] to-[#c27803] hover:from-[#c27803] hover:to-[#c27803] text-white font-bold py-3 rounded-md text-sm text-center shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer active:scale-[0.98]"
 //                 >
 //                   Offer Chadhawa
-//                 </button>
+//                 </Link>
+
+//                 {/* Phone */}
 //                 <a
 //                   href="tel:+919999999999"
-//                   className="w-11 h-11 rounded-full bg-[#2196f3] flex items-center justify-center text-white shadow-md shrink-0"
+//                   className="w-11 h-11 rounded-full bg-[#2196f3] flex items-center justify-center text-white shadow-md hover:bg-[#1976d2] hover:scale-105 transition-all cursor-pointer shrink-0"
 //                 >
 //                   <FaPhone className="text-sm" />
 //                 </a>
+
+//                 {/* WhatsApp */}
 //                 <a
 //                   href="https://wa.me/919999999999"
 //                   target="_blank"
 //                   rel="noopener noreferrer"
-//                   className="w-11 h-11 rounded-full bg-[#25d366] flex items-center justify-center text-white shadow-md shrink-0"
+//                   className="w-11 h-11 rounded-full bg-[#25d366] flex items-center justify-center text-white shadow-md hover:bg-[#1ebe57] hover:scale-105 transition-all cursor-pointer shrink-0"
 //                 >
 //                   <FaWhatsapp className="text-lg" />
 //                 </a>
@@ -525,13 +283,6 @@
 //           </div>
 //         </div>
 //       </div>
-
-//       {/* MODAL */}
-//       <ChadhawaPackageModal
-//         isOpen={isModalOpen}
-//         onClose={() => setIsModalOpen(false)}
-//         chadhawa={chadhawa}
-//       />
 //     </div>
 //   );
 // }
@@ -601,8 +352,9 @@ function ChadhawaDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#fdfaf6]">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#df972b] mx-auto"></div>
-          <p className="mt-3 text-[#7a1c1c] font-semibold">
+          {/* 🔴 Loader changed to maroon */}
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#7b1e2b] mx-auto"></div>
+          <p className="mt-3 text-[#7b1e2b] font-semibold">
             Loading Chadhawa...
           </p>
         </div>
@@ -618,9 +370,10 @@ function ChadhawaDetailPage() {
           <h1 className="text-2xl font-bold text-gray-800 mb-4">
             {error || "Chadhawa Not Found"}
           </h1>
+          {/* 🔴 Go Back button changed to maroon */}
           <Link
             to="/chadhawa"
-            className="inline-block bg-[#e65100] text-white px-6 py-2 rounded-md hover:bg-[#c27803] transition-all"
+            className="inline-block bg-[#7b1e2b] text-white px-6 py-2 rounded-md hover:bg-[#5a1420] transition-all"
           >
             Go Back
           </Link>
@@ -641,13 +394,13 @@ function ChadhawaDetailPage() {
 
   return (
     <div className="w-full h-screen bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] flex flex-col overflow-hidden">
-      {/* ═══════ BREADCRUMB ═══════ */}
+      {/* ═══════ BREADCRUMB 🔴 Hover changed to maroon ═══════ */}
       <div className="px-6 md:px-12 py-2 text-xs text-gray-500 flex items-center gap-2 shrink-0">
-        <Link to="/" className="hover:text-[#c27803]">
+        <Link to="/" className="hover:text-[#7b1e2b]">
           Home
         </Link>
         <span>›</span>
-        <Link to="/chadhawa" className="hover:text-[#c27803]">
+        <Link to="/chadhawa" className="hover:text-[#7b1e2b]">
           Chadhawa
         </Link>
         <span>›</span>
@@ -660,9 +413,11 @@ function ChadhawaDetailPage() {
       <div className="h-[calc(110vh-130px)] flex items-center justify-center px-6 md:px-12 overflow-hidden">
         <div className="w-full max-w-[1100px] h-[90vh]">
           <div className="grid grid-cols-1 lg:grid-cols-[42%_58%] h-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] overflow-hidden">
+            
             {/* ═══════ LEFT: IMAGE ═══════ */}
             <div className="relative h-full p-2.5">
-              <div className="relative w-full h-full rounded-md overflow-hidden group cursor-pointer border-[1px] border-amber-600/30">
+              {/* 🔴 Border changed to maroon */}
+              <div className="relative w-full h-full rounded-md overflow-hidden group cursor-pointer border-[1px] border-[#7b1e2b]/30">
                 <img
                   src={
                     chadhawa.image && chadhawa.image.trim() !== ""
@@ -679,8 +434,9 @@ function ChadhawaDetailPage() {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-between p-4">
                   <div className="self-start">
-                    <div className="bg-amber-100/90 backdrop-blur-md px-3 py-1 rounded-md shadow border border-amber-300 flex items-center gap-1.5">
-                      <span className="text-[11px] font-bold text-amber-900">
+                    {/* 🔴 Badge changed to maroon */}
+                    <div className="bg-[#7b1e2b]/90 backdrop-blur-md px-3 py-1 rounded-md shadow border border-[#5a1420] flex items-center gap-1.5">
+                      <span className="text-[11px] font-bold text-white">
                         Why Choose Puspendra
                       </span>
                     </div>
@@ -695,7 +451,8 @@ function ChadhawaDetailPage() {
                 {chadhawa.name}
               </h1>
 
-              <p className="text-sm text-yellow-600 font-semibold capitalize">
+              {/* 🔴 Text changed to maroon */}
+              <p className="text-sm text-[#7b1e2b] font-semibold capitalize">
                 {chadhawa.chadhavaType?.replace("_", " ")} Chadhawa —{" "}
                 {chadhawa.deity}
               </p>
@@ -723,21 +480,21 @@ function ChadhawaDetailPage() {
                 <span>{formattedDate} - Auspicious Muhurat</span>
               </div>
 
-              {/* ─── Countdown ─── */}
+              {/* ─── Countdown 🔴 Maroon Boxes ─── */}
               <div className="flex items-center gap-3 mb-4 flex-wrap">
                 <span className="text-sm font-bold text-gray-800">
                   Chadhawa in
                 </span>
                 <div className="flex items-center gap-1.5">
-                  <div className="bg-gradient-to-r from-[#df972b] to-[#c27803] text-white font-bold px-3 py-1 rounded-md text-sm">
+                  <div className="bg-gradient-to-r from-[#7b1e2b] to-[#5a1420] text-white font-bold px-3 py-1 rounded-md text-sm">
                     {String(hours).padStart(2, "0")} HR
                   </div>
-                  <span className="text-[#e65100] font-bold">:</span>
-                  <div className="bg-gradient-to-r from-[#df972b] to-[#c27803] text-white font-bold px-3 py-1 rounded-md text-sm">
+                  <span className="text-[#7b1e2b] font-bold">:</span>
+                  <div className="bg-gradient-to-r from-[#7b1e2b] to-[#5a1420] text-white font-bold px-3 py-1 rounded-md text-sm">
                     {String(minutes).padStart(2, "0")} MIN
                   </div>
-                  <span className="text-[#e65100] font-bold">:</span>
-                  <div className="bg-gradient-to-r from-[#df972b] to-[#c27803] text-white font-bold px-3 py-1 rounded-md text-sm">
+                  <span className="text-[#7b1e2b] font-bold">:</span>
+                  <div className="bg-gradient-to-r from-[#7b1e2b] to-[#5a1420] text-white font-bold px-3 py-1 rounded-md text-sm">
                     {String(seconds).padStart(2, "0")} SEC
                   </div>
                 </div>
@@ -770,31 +527,32 @@ function ChadhawaDetailPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5 bg-gradient-to-r from-[#df972b] to-[#c27803] px-2.5 py-1 rounded-md">
+                {/* 🔴 Rating Box changed to maroon */}
+                <div className="flex items-center gap-1.5 bg-gradient-to-r from-[#7b1e2b] to-[#5a1420] px-2.5 py-1 rounded-md">
                   <span className="text-sm font-bold text-white">4.8</span>
-                  <FaStar className="text-amber-800 text-[10px]" />
-                  <span className="text-[10px] text-white border-l border-gray-300 pl-1.5 ml-0.5">
+                  <FaStar className="text-yellow-400 text-[10px]" />
+                  <span className="text-[10px] text-white border-l border-white/30 pl-1.5 ml-0.5">
                     1k+
                   </span>
                 </div>
               </div>
 
-              {/* ─── Price ─── */}
+              {/* ─── Price 🔴 Maroon Text ─── */}
               <div className="mb-5">
                 <p className="text-[12px] text-black font-medium uppercase tracking-wider">
                   Starting from
                 </p>
-                <p className="text-3xl font-bold text-[#7a1c1c]">
+                <p className="text-3xl font-bold text-[#7b1e2b]">
                   ₹{chadhawa.pricing?.single || chadhawa.price}
                 </p>
               </div>
 
               {/* ═══════ CTA — Link Tag ═══════ */}
               <div className="flex items-center gap-2.5 mt-auto w-full">
-                {/* ⭐ LINK TAG — Booking form ke liye */}
+                {/* 🔴 Link Tag changed to maroon */}
                 <Link
                   to={`/chadhawa/${chadhawa._id}/form`}
-                  className="flex-1 min-w-0 bg-gradient-to-r from-[#df972b] to-[#c27803] hover:from-[#c27803] hover:to-[#c27803] text-white font-bold py-3 rounded-md text-sm text-center shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer active:scale-[0.98]"
+                  className="flex-1 min-w-0 bg-gradient-to-r from-[#7b1e2b] to-[#5a1420] hover:from-[#5a1420] hover:to-[#7b1e2b] text-white font-bold py-3 rounded-md text-sm text-center shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer active:scale-[0.98]"
                 >
                   Offer Chadhawa
                 </Link>

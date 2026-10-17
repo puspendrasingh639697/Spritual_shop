@@ -1,202 +1,328 @@
-import React, { useState } from "react";
+
+
+
+// import React, { useState, useEffect } from "react";
+// import { Link } from "react-router-dom";
+// import { BiHeart, BiShoppingBag } from "react-icons/bi";
+// import useProductStore from "../store/useProductStore"; // 👈 Apna store path check kar lena
+// import useWishlistStore from "../store/useWishlistStore"; // 👈 Wishlist store
+
+// export default function PujaSamagri({ products: propProducts }) {
+//   const { fetchProducts, products: storeProducts, loading } = useProductStore();
+//   const { toggleWishlist, wishlist } = useWishlistStore();
+  
+//   const [localProducts, setLocalProducts] = useState([]);
+
+//   // ⭐ Agar parent se data nahi aaya, to API se fetch karo
+//   useEffect(() => {
+//     if (!propProducts || propProducts.length === 0) {
+//       if (typeof fetchProducts === "function") {
+//         fetchProducts(); // Store se data fetch karega
+//       }
+//     }
+//   }, [propProducts, fetchProducts]);
+
+//   // ⭐ Data set karo (Parent se aaye to wahi, warna store se, warna empty)
+//   useEffect(() => {
+//     if (propProducts && propProducts.length > 0) {
+//       setLocalProducts(propProducts);
+//     } else if (storeProducts && storeProducts.length > 0) {
+//       setLocalProducts(storeProducts);
+//     }
+//   }, [propProducts, storeProducts]);
+
+//   // Display ke liye max 8 products (UI clean rakhne ke liye)
+//   const displayProducts = localProducts.slice(0, 8);
+
+//   // ✅ Wishlist Toggle
+//   const handleWishlistToggle = async (e, product) => {
+//     e.stopPropagation(); // Card click roko
+//     const prodId = product._id || product.id;
+//     if (typeof toggleWishlist === "function") {
+//       await toggleWishlist(prodId);
+//     }
+//   };
+
+//   return (
+//     <div className="w-full bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  min-h-screen font-sans pb-16">
+//       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-10">
+        
+//                {/* ================= HEADER ================= */}
+//         <div className="mb-8 border-b border-[#7b1e2b]/20 pb-4 flex flex-col items-center justify-center text-center">
+//           <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#7b1e2b] mb-2">
+//             All Puja Samagri & Kits
+//           </h2>
+//           {/* Center Underline */}
+//           <div className="w-16 h-1 bg-[#7b1e2b] rounded-full"></div>
+//         </div>
+
+//         {/* ================= LOADING STATE ================= */}
+//         {loading && localProducts.length === 0 ? (
+//           <div className="text-center py-20">
+//             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#7b1e2b] mx-auto"></div>
+//             <p className="mt-3 text-[#7b1e2b] font-semibold">Loading Products...</p>
+//           </div>
+//         ) : displayProducts.length === 0 ? (
+//           <div className="text-center py-20 text-gray-500 font-semibold">
+//             No Products available at the moment.
+//           </div>
+//         ) : (
+//           /* ================= PRODUCTS GRID ================= */
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+//             {displayProducts.map((product) => {
+//               const prodId = product._id || product.id;
+              
+//               // Wishlist check
+//               const isWishlisted = wishlist?.some(item => 
+//                 (item._id === prodId || item.id === prodId || item.productId?._id === prodId)
+//               );
+
+//               // Image fallback
+//               const prodImage = product.image || product.images?.[0] || "https://via.placeholder.com/400x300?text=Product";
+              
+//               // Price & Ratings
+//               const finalPrice = product.pricing?.single || product.price || 0;
+//               const oldPrice = product.originalPrice || product.oldPrice;
+//               const rating = product.rating || "4.8";
+//               const reviewsCount = product.reviews || product.reviewsCount || "24";
+              
+//               // Tag fallback (Agar API me tag nahi hai to "Best Seller" dikhega)
+//               const tag = product.tag || product.category?.name || "Popular";
+
+//               return (
+//                 <div 
+//                   key={prodId}
+//                   className="bg-white rounded-xl shadow-md overflow-hidden border border-[#7b1e2b]/20 hover:shadow-xl hover:border-[#7b1e2b]/50 transition-all flex flex-col justify-between group relative cursor-pointer"
+//                 >
+//                   {/* Image & Tags Container */}
+//                   <div className="relative overflow-hidden bg-gray-50 h-64 flex items-center justify-center p-4">
+//                     <img 
+//                       src={prodImage} 
+//                       alt={product.name || "Product"}
+//                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded"
+//                       onError={(e) => {
+//                         e.target.src = "https://via.placeholder.com/400x300?text=Product";
+//                       }}
+//                     />
+                    
+//                     {/* Tag Badge (Maroon) */}
+//                     <span className="absolute top-3 left-3 bg-[#7b1e2b] text-white text-[10px] font-bold px-2.5 py-1 rounded shadow uppercase tracking-wider">
+//                       {tag}
+//                     </span>
+
+//                     {/* Wishlist Button */}
+//                     <button 
+//                       onClick={(e) => handleWishlistToggle(e, product)}
+//                       className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md text-xl hover:scale-110 transition-transform z-10"
+//                     >
+//                       <BiHeart className={isWishlisted ? "text-red-600 fill-red-600" : "text-gray-400"} />
+//                     </button>
+//                   </div>
+
+//                   {/* Product Info */}
+//                   <div className="p-4 flex flex-col flex-grow justify-between">
+//                     <div>
+//                       {/* Rating */}
+//                       <div className="flex items-center gap-1 text-xs text-[#7b1e2b] font-bold mb-1">
+//                         <span>⭐ {rating}</span>
+//                         <span className="text-gray-400 font-normal">({reviewsCount} reviews)</span>
+//                       </div>
+
+//                       {/* Title */}
+//                       <h3 className="font-serif font-bold text-gray-800 text-sm md:text-base line-clamp-2 mb-2 group-hover:text-[#7b1e2b] transition-colors">
+//                         {product.name || product.title || "Puja Product"}
+//                       </h3>
+//                     </div>
+
+//                     <div>
+//                       {/* Pricing */}
+//                       <div className="flex items-center gap-2 mb-4">
+//                         <span className="text-lg font-bold text-[#7b1e2b]">
+//                           ₹{finalPrice.toLocaleString()}
+//                         </span>
+//                         {oldPrice && (
+//                           <span className="text-sm text-gray-400 line-through">
+//                             ₹{oldPrice.toLocaleString()}
+//                           </span>
+//                         )}
+//                       </div>
+
+//                       {/* Action Button (Link to Product Page) */}
+//                       <Link
+//                         to={`/product/${prodId}`}
+//                         className="w-full bg-[#7b1e2b] hover:bg-[#5a1420] text-white py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 shadow transition-colors"
+//                       >
+//                         <BiShoppingBag className="text-lg" /> View Product
+//                       </Link>
+//                     </div>
+//                   </div>
+//                 </div>
+//               );
+//             })}
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { BiHeart, BiShoppingBag, BiCheckCircle } from "react-icons/bi";
+import { BiHeart, BiShoppingBag } from "react-icons/bi";
+import useProductStore from "../store/useProductStore";
+import useWishlistStore from "../store/useWishlistStore";
 
-// Images import (Updated Top Banner & Products)
-import topBanner from "../assets/PujaSamagribaner.png";
-import item1 from "../assets/Puja_Samagri1.png";
-import item2 from "../assets/pojakit_2.jpg";
-import item3 from "../assets/pojakit_3.jpg";
-import item4 from "../assets/pojakit_7.webp";
+export default function PujaSamagri({ products: propProducts }) {
+  const { fetchProducts, products: storeProducts, loading } = useProductStore();
+  const { toggleWishlist, wishlist } = useWishlistStore();
+  
+  const [localProducts, setLocalProducts] = useState([]);
 
-// Sample Puja Samagri & Kits Products Data
-const pujaSamagriData = [
-  {
-    id: 1,
-    name: "Complete Daily Puja Samagri Kit with Pure Cow Ghee & Incense",
-    price: 699,
-    originalPrice: 1099,
-    rating: 4.8,
-    reviews: 112,
-    image: item1,
-    tag: "Best Seller",
-  },
-  {
-    id: 2,
-    name: "Auspicious Festival Havan Samagri & Herbs Pack",
-    price: 349,
-    originalPrice: 500,
-    rating: 4.7,
-    reviews: 84,
-    image: item2,
-    tag: "Pure & Natural",
-  },
-  {
-    id: 3,
-    name: "Premium Hawan Kund & Wood Sticks Assortment",
-    price: 899,
-    originalPrice: 1299,
-    rating: 4.9,
-    reviews: 67,
-    image: item3,
-    tag: "Essential",
-  },
-  {
-    id: 4,
-    name: "Divine Festive Puja Box with Akshat, Kumkum & Camphor",
-    price: 499,
-    originalPrice: 799,
-    rating: 4.6,
-    reviews: 95,
-    image: item4,
-    tag: "Popular",
-  },
-  {
-    id: 5,
-    name: "Special Satyanarayan Puja Samagri Kit",
-    price: 599,
-    originalPrice: 899,
-    rating: 4.9,
-    reviews: 130,
-    image: item1,
-    tag: "Blessed",
-  },
-  {
-    id: 6,
-    name: "Pure Loban & Guggal Dhoop Cups for Positive Energy",
-    price: 249,
-    originalPrice: 399,
-    rating: 4.8,
-    reviews: 145,
-    image: item2,
-    tag: "Aromatic",
-  },
-];
+  // ⭐ Fetch data
+  useEffect(() => {
+    if (!propProducts || propProducts.length === 0) {
+      if (typeof fetchProducts === "function") {
+        fetchProducts();
+      }
+    }
+  }, [propProducts, fetchProducts]);
 
-export default function PujaSamagri() {
-  const [wishlist, setWishlist] = useState([]);
-  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    if (propProducts && propProducts.length > 0) {
+      setLocalProducts(propProducts);
+    } else if (storeProducts && storeProducts.length > 0) {
+      setLocalProducts(storeProducts);
+    }
+  }, [propProducts, storeProducts]);
 
-  const toggleWishlist = (id) => {
-    if (wishlist.includes(id)) {
-      setWishlist(wishlist.filter(item => item !== id));
-    } else {
-      setWishlist([...wishlist, id]);
+  const displayProducts = localProducts.slice(0, 8);
+
+  // ✅ Wishlist Toggle
+  const handleWishlistToggle = async (e, product) => {
+    e.stopPropagation();
+    const prodId = product._id || product.id;
+    if (typeof toggleWishlist === "function") {
+      await toggleWishlist(prodId);
     }
   };
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-    alert(`${product.name} added to cart successfully! 🛒`);
-  };
-
   return (
-    <div className="w-full bg-[#fff3df] min-h-screen font-sans pb-16">
-      
-      {/* Top Banner Section (Using PujaSamagribaner.png) */}
-      <div className="w-full bg-[#fff3df] shadow-md relative pt-2 pb-2">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="relative w-full rounded-xl overflow-hidden shadow-2xl">
-            <img 
-              src={topBanner} 
-              alt="Puja Samagri Banner" 
-              className="w-full h-auto max-h-[380px] md:max-h-[450px] object-cover mx-auto"
-            />
-            
-          </div>
-        </div>
-      </div>
-
-      {/* Trust Badges Strip */}
-      <div className="bg-[#8c0a15] text-white py-3 px-4 shadow-inner mt-4">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-around gap-4 text-xs md:text-sm font-medium">
-          <div className="flex items-center gap-2">
-            <BiCheckCircle className="text-amber-400 text-lg" /> 100% Pure & Natural Herbs
-          </div>
-          <div className="flex items-center gap-2">
-            <BiCheckCircle className="text-amber-400 text-lg" /> Hygienically Packed
-          </div>
-          <div className="flex items-center gap-2">
-            <BiCheckCircle className="text-amber-400 text-lg" /> Complete Ritual Kits Available
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content Container */}
+    <div className="w-full  bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df]  min-h-screen font-sans pb-16">
       <div className="max-w-7xl mx-auto px-4 md:px-8 mt-10">
         
-        {/* Section Title */}
-        <div className="mb-8 border-b border-gray-300 pb-4">
-          <h2 className="text-2xl font-serif font-bold text-[#8c0a15]">All Puja Samagri & Kits</h2>
+        {/* ================= HEADER ================= */}
+        <div className="mb-8 border-b border-[#7b1e2b]/20 pb-4 flex flex-col items-center justify-center text-center">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#7b1e2b] mb-2">
+            All Puja Samagri & Kits
+          </h2>
+          <div className="w-16 h-1 bg-[#7b1e2b] rounded-full"></div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {pujaSamagriData.map((product) => {
-            const isWishlisted = wishlist.includes(product.id);
-            return (
-              <div 
-                key={product.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden border border-amber-200/60 hover:shadow-xl transition-all flex flex-col justify-between group"
-              >
-                {/* Image & Tags Container */}
-                <div className="relative overflow-hidden bg-gray-50 h-64 flex items-center justify-center p-4">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded"
-                  />
-                  
-                  {/* Tag Badge */}
-                  <span className="absolute top-3 left-3 bg-[#8c0a15] text-white text-[10px] font-bold px-2.5 py-1 rounded shadow">
-                    {product.tag}
-                  </span>
+        {/* ================= LOADING STATE ================= */}
+        {loading && localProducts.length === 0 ? (
+          <div className="text-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#7b1e2b] mx-auto"></div>
+            <p className="mt-3 text-[#7b1e2b] font-semibold">Loading Products...</p>
+          </div>
+        ) : displayProducts.length === 0 ? (
+          <div className="text-center py-20 text-gray-500 font-semibold">
+            No Products available at the moment.
+          </div>
+        ) : (
+          /* ================= PRODUCTS GRID ================= */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+            {displayProducts.map((product) => {
+              const prodId = product._id || product.id;
+              
+              const isWishlisted = wishlist?.some(item => 
+                (item._id === prodId || item.id === prodId || item.productId?._id === prodId)
+              );
 
-                  {/* Wishlist Button */}
-                  <button 
-                    onClick={() => toggleWishlist(product.id)}
-                    className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md text-xl hover:scale-110 transition-transform"
-                  >
-                    <BiHeart className={isWishlisted ? "text-red-600 fill-red-600" : "text-gray-500"} />
-                  </button>
-                </div>
+              const prodImage = product.image || product.images?.[0] || "https://via.placeholder.com/400x300?text=Product";
+              
+              const finalPrice = product.pricing?.single || product.price || 0;
+              const oldPrice = product.originalPrice || product.oldPrice;
+              const rating = product.rating || "4.8";
+              const reviewsCount = product.reviews || product.reviewsCount || "24";
+              const tag = product.tag || product.category?.name || "Popular";
 
-                {/* Product Info */}
-                <div className="p-4 flex flex-col flex-grow justify-between">
-                  <div>
-                    {/* Rating */}
-                    <div className="flex items-center gap-1 text-xs text-amber-500 font-bold mb-1">
-                      <span>⭐ {product.rating}</span>
-                      <span className="text-gray-400 font-normal">({product.reviews} reviews)</span>
-                    </div>
+              return (
+                <div 
+                  key={prodId}
+                  className=" bg-gradient-to-r from-white via-[#fff7ed] to-[#fff3df] backdrop-blur-xl rounded-md shadow-sm hover:shadow-xl overflow-hidden border border-[#7b1e2b]/10 hover:border-[#7b1e2b]/40 transition-all duration-300 flex flex-col justify-between group relative cursor-pointer"
+                >
+                  {/* Image Container - Full Width & Height Cover */}
+                  <div className="relative overflow-hidden bg-gray-100 h-52 w-full">
+                    <img 
+                      src={prodImage} 
+                      alt={product.name || "Product"}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/400x300?text=Product";
+                      }}
+                    />
+                    
+                    {/* 🔴 Dark Blur & Gradient Overlay for Readability */}
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20"></div>
 
-                    {/* Title */}
-                    <h3 className="font-serif font-bold text-gray-800 text-sm md:text-base line-clamp-2 mb-2 group-hover:text-[#8c0a15] transition-colors">
-                      {product.name}
-                    </h3>
-                  </div>
+                    {/* Tag Badge */}
+                    <span className="absolute top-3 left-3 bg-[#7b1e2b] text-white text-[9px] font-bold px-2.5 py-1 rounded shadow-md uppercase tracking-wider z-10">
+                      {tag}
+                    </span>
 
-                  <div>
-                    {/* Pricing */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-lg font-bold text-[#8c0a15]">₹{product.price.toLocaleString()}</span>
-                      <span className="text-sm text-gray-400 line-through">₹{product.originalPrice.toLocaleString()}</span>
-                    </div>
-
-                    {/* Action Button */}
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="w-full bg-[#8c0a15] hover:bg-[#6b080f] text-white py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 shadow transition-colors"
+                    {/* Wishlist Button */}
+                    <button 
+                      onClick={(e) => handleWishlistToggle(e, product)}
+                      className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-full shadow-md text-lg hover:scale-110 transition-transform z-10"
                     >
-                      <BiShoppingBag className="text-lg" /> Add to Cart
+                      <BiHeart className={isWishlisted ? "text-red-600 fill-red-600" : "text-gray-600"} />
                     </button>
                   </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
 
+                  {/* Product Info */}
+                  <div className="p-4 flex flex-col flex-grow justify-between bg-white/50">
+                    <div>
+                      {/* Rating */}
+                      <div className="flex items-center gap-1 text-[11px] text-[#7b1e2b] font-bold mb-1">
+                        <span>⭐ {rating}</span>
+                        <span className="text-gray-500 font-normal">({reviewsCount} reviews)</span>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="font-serif font-bold text-gray-800 text-sm md:text-base line-clamp-2 mb-2 group-hover:text-[#7b1e2b] transition-colors leading-snug">
+                        {product.name || product.title || "Puja Product"}
+                      </h3>
+                    </div>
+
+                    <div>
+                      {/* Pricing */}
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-lg font-bold text-[#7b1e2b]">
+                          ₹{finalPrice.toLocaleString()}
+                        </span>
+                        {oldPrice && (
+                          <span className="text-xs text-gray-400 line-through">
+                            ₹{oldPrice.toLocaleString()}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Action Button */}
+                      <Link
+                        to={`/product/${prodId}`}
+                        className="w-full bg-[#7b1e2b] hover:bg-[#5a1420] text-white py-2.5 rounded-md text-xs font-semibold flex items-center justify-center gap-2 shadow transition-colors"
+                      >
+                        <BiShoppingBag className="text-sm" /> View Product
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
